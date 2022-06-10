@@ -131,7 +131,7 @@ public struct KeyPair {
 	// MARK: - Private Helpers
 	
 	/// Helper method to take a secp256k1 private key (for a regualr keypair) and use it to create a public key for the same curve
-	private static func secp256k1PublicKey(fromPrivateKeyBytes pkBytes: [UInt8]) -> PublicKey? {
+	public static func secp256k1PublicKey(fromPrivateKeyBytes pkBytes: [UInt8]) -> PublicKey? {
 		var publicKey = secp256k1_pubkey()
 		var outputLength = 33
 		var publicKeyBytes = [UInt8](repeating: 0, count: outputLength)
