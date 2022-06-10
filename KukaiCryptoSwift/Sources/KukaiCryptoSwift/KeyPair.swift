@@ -10,13 +10,32 @@ import Sodium
 import secp256k1
 import os.log
 
+/// A struct representing a both a `PrivateKey` and `PublicKey` with helper methods to create various kinds
 public struct KeyPair {
 	
-	let privateKey: PrivateKey
-	let publicKey: PublicKey
+	/// The underlying `PrivateKey` of the pair
+	public let privateKey: PrivateKey
 	
+	/// The underlying `PublicKey` of the pair
+	public let publicKey: PublicKey
+	
+	
+	
+	// MARK: - Public Helpers
+	
+	/**
+	 Create a regular (non HD) `KeyPair` from a hex seed string and optional `EllipticalCurve` (defaults to `.ed25519`, which returtns a TZ1 address)
+	 - parameter seedString: A hex string representing a cryptographic seed (can be created from `Mnemonic`)
+	 - parameter signingCurve: The `EllipticalCurve` to use to create the keys
+	 - Returns: A `KeyPair` instance, if able, nil otherwise
+	 */
 	public static func regular(fromSeedString seedString: String, andSigningCurve signingCurve: EllipticalCurve = .ed25519) -> KeyPair? {
-		guard let seed = Sodium.shared.utils.hex2bin(seedString), let keyPair = Sodium.shared.sign.keyPair(seed: seed) else {
+		var shortenedSeed = seedString
+		if seedString.count > 64 {
+			shortenedSeed = String(seedString[..<seedString.index(seedString.startIndex, offsetBy: 64)])
+		}
+		
+		guard let seed = Sodium.shared.utils.hex2bin(shortenedSeed), let keyPair = Sodium.shared.sign.keyPair(seed: seed) else {
 			return nil
 		}
 		
@@ -39,6 +58,29 @@ public struct KeyPair {
 		}
 	}
 	
+	/**
+	 Create a regular (non HD) `KeyPair` from a `Mnemonic` instance
+	 - parameter mnemonic: An instance of `Mnemonic`
+	 - parameter signingCurve: The `EllipticalCurve` to use to create the keys
+	 - Returns: A `KeyPair` instance, if able, nil otherwise
+	 */
+	public static func regular(fromMnemonic mnemonic: Mnemonic, passphrase: String, andSigningCurve signingCurve: EllipticalCurve = .ed25519) -> KeyPair? {
+		do {
+			let seed = try mnemonic.seed(passphrase: "").hexString
+			return regular(fromSeedString: seed, andSigningCurve: signingCurve)
+			
+		} catch (let error) {
+			os_log("KeyPair Error - regular: %@", log: .default, type: .error, "\(error)")
+			return nil
+		}
+	}
+	
+	/**
+	 Create a HD `KeyPair` from a hex seed string and optional Derivation Path (defaults to m/44'/1729'/0'/0' ). Only TZ1 are produceable
+	 - parameter seedString: A hex string representing a cryptographic seed (can be created from `Mnemonic`)
+	 - parameter derivationPath: The derivationPath to use
+	 - Returns: A `KeyPair` instance, if able, nil otherwise
+	 */
 	public static func hd(fromSeedString seedString: String, andDerivationPath derivationPath: String = HD.defaultDerivationPath) -> KeyPair? {
 		
 		do {
@@ -56,12 +98,33 @@ public struct KeyPair {
 			return KeyPair(privateKey: PrivateKey(keyPair.secretKey), publicKey: PublicKey(keyPair.publicKey))
 			
 		} catch (let error) {
-			os_log("KeyPair Error: %@", log: .default, type: .error, "\(error)")
+			os_log("KeyPair Error - HD: %@", log: .default, type: .error, "\(error)")
+			return nil
+		}
+	}
+	
+	/**
+	 Create a HD `KeyPair` from a `Mnemonic` instance
+	 - parameter mnemonic: An instance of `Mnemonic`
+	 - parameter derivationPath: The derivationPath to use
+	 - Returns: A `KeyPair` instance, if able, nil otherwise
+	 */
+	public static func hd(fromMnemonic mnemonic: Mnemonic, passphrase: String, andDerivationPath derivationPath: String = HD.defaultDerivationPath) -> KeyPair? {
+		do {
+			let seed = try mnemonic.seed(passphrase: "").hexString
+			return hd(fromSeedString: seed, andDerivationPath: derivationPath)
+			
+		} catch (let error) {
+			os_log("KeyPair Error - HD: %@", log: .default, type: .error, "\(error)")
 			return nil
 		}
 	}
 	
 	
+	
+	// MARK: - Private Helpers
+	
+	/// Helper method to take a secp256k1 private key (for a regualr keypair) and use it to create a public key for the same curve
 	private static func secp256k1PublicKey(fromPrivateKeyBytes pkBytes: [UInt8]) -> PublicKey? {
 		var publicKey = secp256k1_pubkey()
 		var outputLength = 33

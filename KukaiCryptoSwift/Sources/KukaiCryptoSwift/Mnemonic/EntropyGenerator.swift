@@ -1,4 +1,6 @@
 
+// From: https://github.com/KevinVitale/WalletKit
+
 import Foundation
 
 /**
@@ -16,6 +18,7 @@ public enum EntropyGeneratorError: Swift.Error {
 }
 
 extension Int: EntropyGenerator {
+	
 	public func entropy() -> Result<Data, Swift.Error> {
 		guard (self % 2) == 0, case 4...8 = (self / 32) else {
 			return .failure(EntropyGeneratorError.invalidInput(self))

@@ -11,11 +11,16 @@ import XCTest
 final class MnemonicTests: XCTestCase {
 	
 	func testExample() throws {
-		/*
+		
+		XCTAssert(HD.validateDerivationPath(HD.defaultDerivationPath))
+		
+		
+		
+		
 		let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
 		let seed = try mnemonic.seed(passphrase: "").hexString
-		let shortenedSeed = String(seed[..<seed.index(seed.startIndex, offsetBy: 64)])
 		
+		/*
 		if let priKey = PrivateKey(seedString: shortenedSeed, signingCurve: .ed25519) {
 			let pubKey = PublicKey(privateKey: priKey)
 			let hash = pubKey?.publicKeyHash ?? "-"
@@ -38,7 +43,6 @@ final class MnemonicTests: XCTestCase {
 			XCTFail()
 		}
 		*/
-		
 		
 		/*
 		let pairTz1 = KeyPair.from(seedString: shortenedSeed, signingCurve: .ed25519)

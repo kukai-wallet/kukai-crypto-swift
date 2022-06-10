@@ -10,7 +10,7 @@ import secp256k1
 import Sodium
 
 
-/// A struct representing a PrivateKey for `LinearWallet` classes
+/// A struct representing a PrivateKey
 public struct PrivateKey: Codable {
 	
 	
@@ -37,12 +37,11 @@ public struct PrivateKey: Codable {
 	
 	// MARK: - Init
 	
-	/// Initialize a key with the given hex seed string.
-	///
-	///  - Parameters:
-	///    - seedString a hex encoded seed string.
-	///    - signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
-	/// - Returns: A representative secret key, or nil if the seed string was in an unexpected format.
+	/**
+	 Initialize a key with the given hex seed string.
+	 - parameter seedString a hex encoded seed string.
+	 - parameter signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
+	 */
 	public init?(seedString: String, signingCurve: EllipticalCurve = .ed25519) {
 		guard let seed = Sodium.shared.utils.hex2bin(seedString), let keyPair = Sodium.shared.sign.keyPair(seed: seed) else {
 			return nil
@@ -62,11 +61,11 @@ public struct PrivateKey: Codable {
 		
 	}
 	
-	/// Initialize a secret key with the given base58check encoded string.
-	///
-	///  - Parameters:
-	///    - string: A base58check encoded string.
-	///    - signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
+	/**
+	 Initialize a key with the given base58check encoded string.
+	 - parameter string: A base58check encoded string.
+	 - parameter signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
+	 */
 	public init?(_ string: String, signingCurve: EllipticalCurve = .ed25519) {
 		switch signingCurve {
 			case .ed25519:
@@ -83,21 +82,21 @@ public struct PrivateKey: Codable {
 		}
 	}
 	
-	/// Initialize a key with the given bytes.
-	///  - Parameters:
-	///    - bytes: Raw bytes of the private key.
-	///    - signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
+	/**
+	 Initialize a key with the given bytes.
+	 - parameter bytes: Raw bytes of the private key.
+	 - parameter signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
+	 */
 	public init(_ bytes: [UInt8], signingCurve: EllipticalCurve = .ed25519) {
 		self.bytes = bytes
 		self.signingCurve = signingCurve
 	}
 	
-	/// Sign the given hex encoded string with the given key.
-	///
-	/// - Parameters:
-	///   - hex: The hex string to sign.
-	///   - secretKey: The secret key to sign with.
-	/// - Returns: A signature from the input.
+	/**
+	 Sign the given hex encoded string with the given key.
+	 - parameter hex: The hex string to sign.
+	 - Returns: A signature from the input.
+	 */
 	public func sign(hex: String) -> [UInt8]? {
 		guard let bytes = Sodium.shared.utils.hex2bin(hex) else {
 			return nil
@@ -105,12 +104,11 @@ public struct PrivateKey: Codable {
 		return self.sign(bytes: bytes)
 	}
 	
-	/// Sign the given bytes.
-	///
-	/// - Parameters:
-	///   - bytes: The raw bytes to sign.
-	///   - secretKey: The secret key to sign with.
-	/// - Returns: A signature from the input.
+	/**
+	 Sign the given bytes.
+	 - parameter bytes: The raw bytes to sign.
+	 - Returns: A signature from the input.
+	 */
 	public func sign(bytes: [UInt8]) -> [UInt8]? {
 		guard let bytesToSign = prepareBytesForSigning(bytes) else {
 			return nil

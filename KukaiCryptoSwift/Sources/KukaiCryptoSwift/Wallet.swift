@@ -12,19 +12,10 @@ import Foundation
 
 /// Enum to distingush between linear (non-hd) wallets, using the Bip39 standard, and hd wallets using the Bip44 standard.
 public enum WalletType: String, Codable {
-	case linear
+	case regular
 	case hd
 	case social
 	case ledger
-}
-
-/// Helper enum used to choose the number of words for a mnemonic
-public enum MnemonicPhraseLength: Int {
-	case twelve = 128
-	case fifteen = 160
-	case eighteen = 192
-	case twentyOne = 224
-	case twentyFour = 256
 }
 
 /// Distingush between ed25519 (TZ1...) and secp256k1 (TZ2...) curves for creating and using wallet addresses

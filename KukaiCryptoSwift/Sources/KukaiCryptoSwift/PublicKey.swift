@@ -10,7 +10,7 @@ import secp256k1
 import Sodium
 
 
-/// A struct representing a PublicKey for `LinearWallet` classes
+/// A struct representing a PublicKey
 public struct PublicKey: Codable {
 	
 	
@@ -65,13 +65,13 @@ public struct PublicKey: Codable {
 				guard let bytes = Base58Check.decode(string: string, prefix: Prefix.Keys.Ed25519.public) else {
 					return nil
 				}
-				self.init(bytes: bytes, signingCurve: signingCurve)
+				self.init(bytes, signingCurve: signingCurve)
 				
 			case .secp256k1:
 				guard let bytes = Base58Check.decode(string: string, prefix: Prefix.Keys.Secp256k1.public) else {
 					return nil
 				}
-				self.init(bytes: bytes, signingCurve: signingCurve)
+				self.init(bytes, signingCurve: signingCurve)
 		}
 	}
 	
@@ -79,13 +79,12 @@ public struct PublicKey: Codable {
 	
 	// MARK: - Crypto functions
 	
-	/// Verify that the given signature matches the given input hex.
-	///
-	/// - Parameters:
-	///   - hex: The hex to check.
-	///   - signature: The proposed signature of the bytes.
-	///   - publicKey: The proposed public key.
-	/// - Returns: True if the public key and signature match the given bytes.
+	/**
+	 Verify that the given signature matches the given input hex.
+	 - parameter signature: The proposed signature of the bytes.
+	 - parameter hex: The hex to check.
+	 - Returns: True if the public key and signature match the given bytes.
+	 */
 	public func verify(signature: [UInt8], hex: String) -> Bool {
 		guard let bytes = Sodium.shared.utils.hex2bin(hex) else {
 			return false
@@ -93,13 +92,12 @@ public struct PublicKey: Codable {
 		return verify(signature: signature, bytes: bytes)
 	}
 	
-	/// Verify that the given signature matches the given input bytes.
-	///
-	/// - Parameters:
-	///   - bytes: The bytes to check.
-	///   - signature: The proposed signature of the bytes.
-	///   - publicKey: The proposed public key.
-	/// - Returns: True if the public key and signature match the given bytes.
+	/**
+	 Verify that the given signature matches the given input bytes.
+	 - parameter signature: The proposed signature of the bytes.
+	 - parameter bytes: The bytes to check.
+	 - Returns: True if the public key and signature match the given bytes.
+	 */
 	public func verify(signature: [UInt8], bytes: [UInt8]) -> Bool {
 		guard let bytesToVerify = prepareBytesForVerification(bytes) else {
 			return false
@@ -132,12 +130,14 @@ public struct PublicKey: Codable {
 }
 
 extension PublicKey: CustomStringConvertible {
+	
 	public var description: String {
 		return base58CheckRepresentation
 	}
 }
 
 extension PublicKey: Equatable {
+	
 	public static func == (lhs: PublicKey, rhs: PublicKey) -> Bool {
 		return lhs.base58CheckRepresentation == rhs.base58CheckRepresentation
 	}

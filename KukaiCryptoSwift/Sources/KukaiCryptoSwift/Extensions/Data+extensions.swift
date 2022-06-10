@@ -37,6 +37,7 @@ private func htoi(_ value: UInt8) throws -> UInt8 {
 
 public extension Data {
 	
+	/// Generate secure random bytes from Data
 	static func randomBytes(_ count: Int) throws -> Data {
 		var buffer = Data(count: count)
 		try buffer.withUnsafeMutableBytes { pointer in
@@ -51,6 +52,7 @@ public extension Data {
 		return buffer
 	}
 	
+	/// Create a Data object from a hex string
 	init(hexString: String) throws {
 		self.init()
 		
@@ -70,6 +72,8 @@ public extension Data {
 }
 
 public extension DataProtocol {
+	
+	/// Convert a Data object into a hex string
 	var hexString: String {
 		let hexLen = self.count * 2
 		let ptr = UnsafeMutablePointer<UInt8>.allocate(capacity: hexLen)

@@ -1,4 +1,6 @@
 
+// From: https://github.com/KevinVitale/WalletKit
+
 import Foundation
 import CommonCrypto
 
@@ -12,6 +14,16 @@ public enum MnemonicError: Swift.Error {
  * A list of words which can generate a private key.
  */
 public struct Mnemonic: Equatable {
+	
+	/// Helper enum used to choose the number of words for a mnemonic
+	public enum NumberOfWords: Int {
+		case tweleve = 128
+		case fifteen = 160
+		case eighteen = 192
+		case twentyOne = 224
+		case twentyFour = 256
+	}
+	
 	/// The list of words as a single sentence.
 	public private(set) var phrase: String = ""
 	
@@ -43,6 +55,10 @@ public struct Mnemonic: Equatable {
 	
 	public init(strength: Int = .strongest, in vocabulary: WordList = .english) throws {
 		try self.init(entropy: strength, in: vocabulary)
+	}
+	
+	public init(numberOfWords: NumberOfWords, in vocabulary: WordList = .english) throws {
+		try self.init(entropy: numberOfWords.rawValue, in: vocabulary)
 	}
 	
 	
