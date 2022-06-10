@@ -17,7 +17,7 @@ public struct Mnemonic: Equatable, Codable {
 	
 	/// Helper enum used to choose the number of words for a mnemonic
 	public enum NumberOfWords: Int {
-		case tweleve = 128
+		case twelve = 128
 		case fifteen = 160
 		case eighteen = 192
 		case twentyOne = 224
