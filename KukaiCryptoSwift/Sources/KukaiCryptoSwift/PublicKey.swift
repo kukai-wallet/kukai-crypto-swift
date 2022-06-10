@@ -53,7 +53,7 @@ public struct PublicKey: Codable {
 	// MARK: - Init
 	
 	/// Initialize a key with the given bytes and signing curve.
-	public init(bytes: [UInt8], signingCurve: EllipticalCurve) {
+	public init(_ bytes: [UInt8], signingCurve: EllipticalCurve = .ed25519) {
 		self.bytes = bytes
 		self.signingCurve = signingCurve
 	}
@@ -72,42 +72,6 @@ public struct PublicKey: Codable {
 					return nil
 				}
 				self.init(bytes: bytes, signingCurve: signingCurve)
-		}
-	}
-	
-	/// Initialize a key from the given secret key with the given signing curve.
-	public init?(privateKey: PrivateKey) {
-		switch privateKey.signingCurve {
-			case .ed25519:
-				self.init(bytes: Array(privateKey.bytes[32...]), signingCurve: .ed25519)
-				
-			case .secp256k1:
-				let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))
-				defer {
-					secp256k1_context_destroy(context)
-				}
-				
-				var publicKey = secp256k1_pubkey()
-				guard
-					secp256k1_ec_pubkey_create(context!, &publicKey, privateKey.bytes) != 0
-				else {
-					return nil
-				}
-				
-				var outputLength = 33
-				var publicKeyBytes = [UInt8](repeating: 0, count: outputLength)
-				guard secp256k1_ec_pubkey_serialize(
-					context!,
-					&publicKeyBytes,
-					&outputLength,
-					&publicKey,
-					UInt32(SECP256K1_EC_COMPRESSED)
-				) != 0
-				else {
-					return nil
-				}
-				
-				self.init(bytes: publicKeyBytes, signingCurve: .secp256k1)
 		}
 	}
 	
@@ -178,4 +142,3 @@ extension PublicKey: Equatable {
 		return lhs.base58CheckRepresentation == rhs.base58CheckRepresentation
 	}
 }
-

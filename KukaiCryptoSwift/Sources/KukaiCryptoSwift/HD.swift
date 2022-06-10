@@ -31,11 +31,6 @@ public struct HD {
 		let chainCode: Data
 	}
 	
-	public struct KeyPair {
-		let privateKey: PrivateKey
-		let publicKey: PublicKey
-	}
-	
 	
 	
 	// MARK: - Hashing
@@ -79,27 +74,6 @@ public struct HD {
 	
 	
 	// MARK: - Helpers
-	
-	public static func seedToKeyPair(_ seed: Data, derivationPath: String) throws -> KeyPair {
-		let pathArray = try convertDerivationPathToArray(derivationPath)
-		var node = try deriveRootNode(seed: seed)
-		
-		for bigInt in pathArray {
-			node = try deriveChildNode(node: node, index: bigInt)
-		}
-		
-		guard let data = Sodium.shared.utils.hex2bin(node.privateKey.hexString), let keyPair = Sodium.shared.sign.keyPair(seed: data) else {
-			throw HDError.unableToCreateKeyPair
-		}
-		
-		let privateKey = PrivateKey(keyPair.secretKey)
-		
-		guard let publicKey = PublicKey(privateKey: privateKey) else {
-			throw HDError.unableToCreatePublicKey
-		}
-		
-		return KeyPair(privateKey: privateKey, publicKey: publicKey)
-	}
 	
 	public static func convertDerivationPathToArray(_ derivationPath: String) throws -> [BigUInt] {
 		var path = derivationPath.replacingOccurrences(of: "m/", with: "")

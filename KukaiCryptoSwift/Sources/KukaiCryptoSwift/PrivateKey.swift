@@ -121,16 +121,19 @@ public struct PrivateKey: Codable {
 				return Sodium.shared.sign.signature(message: bytesToSign, secretKey: self.bytes)
 				
 			case .secp256k1:
-				let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))!
-				defer {
-					secp256k1_context_destroy(context)
-				}
-				
 				var signature = secp256k1_ecdsa_signature()
 				let signatureLength = 64
 				var output = [UInt8](repeating: 0, count: signatureLength)
-				guard secp256k1_ecdsa_sign(context, &signature, bytesToSign, self.bytes, nil, nil) != 0, secp256k1_ecdsa_signature_serialize_compact(context, &output, &signature) != 0 else {
+				
+				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)),
+					  secp256k1_ecdsa_sign(context, &signature, bytesToSign, self.bytes, nil, nil) != 0,
+					  secp256k1_ecdsa_signature_serialize_compact(context, &output, &signature) != 0
+				else {
 					return nil
+				}
+				
+				defer {
+					secp256k1_context_destroy(context)
 				}
 				
 				return output
