@@ -10,80 +10,23 @@ import XCTest
 
 final class MnemonicTests: XCTestCase {
 	
-	func testExample() throws {
-		
-		XCTAssert(HD.validateDerivationPath(HD.defaultDerivationPath))
-		
-		
-		
-		
+	func testWords() throws {
 		let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
-		let seed = try mnemonic.seed(passphrase: "").hexString
 		
-		/*
-		if let priKey = PrivateKey(seedString: shortenedSeed, signingCurve: .ed25519) {
-			let pubKey = PublicKey(privateKey: priKey)
-			let hash = pubKey?.publicKeyHash ?? "-"
-			XCTAssert(hash == "tz1T3QZ5w4K11RS3vy4TXiZepraV9R5GzsxG", hash)
-			
-			
-		} else {
-			XCTFail()
-		}
+		let seed1 = try mnemonic.seed()
+		XCTAssert(seed1.hexString == "80d4e52897c8e14fbfad4637373de405fa2cc7f27eb9f890db975948b0e7fdb0e7540cb3d355291669353a5a261350ac8b8978d6640d388de8a293adcf020b8d", seed1.hexString)
 		
-		
-		
-		if let priKey = PrivateKey(seedString: shortenedSeed, signingCurve: .secp256k1) {
-			let pubKey = PublicKey(privateKey: priKey)
-			let hash = pubKey?.publicKeyHash ?? "-"
-			XCTAssert(hash == "tz2UiZQJwaVAKxRuYxV8Tx5k8a64gZx1ZwYJ", hash)
-			
-			
-		} else {
-			XCTFail()
-		}
-		*/
-		
-		/*
-		let pairTz1 = KeyPair.from(seedString: shortenedSeed, signingCurve: .ed25519)
-		let pairTz2 = KeyPair.from(seedString: shortenedSeed, signingCurve: .secp256k1)
-		
-		
-		XCTAssert(pairTz1?.publicKey.publicKeyHash == "tz1T3QZ5w4K11RS3vy4TXiZepraV9R5GzsxG", pairTz1?.publicKey.publicKeyHash ?? "-")
-		XCTAssert(pairTz2?.publicKey.publicKeyHash == "tz2UiZQJwaVAKxRuYxV8Tx5k8a64gZx1ZwYJ", pairTz2?.publicKey.publicKeyHash ?? "-")
-		
-		print("pairTz1.privateKey: \(pairTz1?.privateKey.bytes.hexString)")
-		print("pairTz1.publicKey: \(pairTz1?.publicKey.bytes.hexString)")
-		print("pairTz1.publicKey.publicKeyHash: \(pairTz1?.publicKey.publicKeyHash)")
-		print("pairTz2.privateKey: \(pairTz2?.privateKey.bytes.hexString)")
-		print("pairTz2.publicKey: \(pairTz2?.publicKey.bytes.hexString)")
-		print("pairTz2.publicKey.publicKeyHash: \(pairTz2?.publicKey.publicKeyHash)")
-		*/
+		let seed2 = try mnemonic.seed(passphrase: "aPassword")
+		XCTAssert(seed2.hexString == "e469380003a26cae690330efddb4f9edfb389ea1d35576324f2a91b5f0e91105e1f9a8cde26f736d45e12547019cb5fd60c92c5353e59d759f40b43a4e06c22c", seed2.hexString)
 	}
 	
-	func testAnotherExample() throws {
-		
-		/*
-		let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
-		let seed = try mnemonic.seed(passphrase: "").hexString
-		
-		let keyPair = try HD.seedToKeyPair(Data(hexString: seed), derivationPath: HD.defaultDerivationPath)
-		
-		
-		print("\n\n\n")
-		print("Private key: \(keyPair.privateKey.bytes.hexString)")
-		print("Public key: \(keyPair.publicKey.bytes.hexString)")
-		print("Address: \(keyPair.publicKey.publicKeyHash ?? "-")")
-		print("\n\n\n")
-		*/
-		
-		
-		
-		let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
-		let seed = try mnemonic.seed(passphrase: "").hexString
-		
-		let keyPair = KeyPair.hd(fromSeedString: seed)
-		
-		XCTAssert(keyPair?.publicKey.publicKeyHash == "tz1bQnUB6wv77AAnvvkX5rXwzKHis6RxVnyF", keyPair?.publicKey.publicKeyHash ?? "-")
+	func testNumberOfWords() throws {
+		let mnemonic = try Mnemonic(numberOfWords: .twentyFour)
+		XCTAssert(mnemonic.words.count == 24)
+	}
+	
+	func testEntropy() throws {
+		let mnemonic = try Mnemonic(entropy: Int.strongest)
+		XCTAssert(mnemonic.words.count == 24)
 	}
 }

@@ -66,7 +66,7 @@ public struct KeyPair {
 	 */
 	public static func regular(fromMnemonic mnemonic: Mnemonic, passphrase: String, andSigningCurve signingCurve: EllipticalCurve = .ed25519) -> KeyPair? {
 		do {
-			let seed = try mnemonic.seed(passphrase: "").hexString
+			let seed = try mnemonic.seed(passphrase: passphrase).hexString
 			return regular(fromSeedString: seed, andSigningCurve: signingCurve)
 			
 		} catch (let error) {
