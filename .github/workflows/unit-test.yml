@@ -19,6 +19,7 @@ jobs:
       matrix:
         platform:
           - iOS
+          - macOS
         xcode:
           - ^13
     steps:
@@ -32,24 +33,3 @@ jobs:
           scheme: KukaiCryptoSwift
           code-coverage: true
           upload-logs: always
-  
-  build:
-    runs-on: macos-11
-    strategy:
-      matrix:
-        platform:
-          - MacOS
-        xcode:
-          - ^13
-    steps:
-      - uses: actions/checkout@v2.3.4
-
-      - uses: mxcl/xcodebuild@v1.9.2
-        with:
-          platform: ${{ matrix.platform }}
-          xcode: ${{ matrix.xcode }}
-          action: test
-          scheme: KukaiCryptoSwift
-          code-coverage: true
-          upload-logs: always
-      
