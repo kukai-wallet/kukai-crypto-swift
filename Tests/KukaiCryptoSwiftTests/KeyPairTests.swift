@@ -82,5 +82,13 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair4?.publicKey.base58CheckRepresentation == "edpkthBU4kJTd8rdbeUt3MafV4KHQEMoJ9M5idVtBrCVm5vBE2kY8K", keyPair4?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair4?.privateKey.sign(bytes: messageToSign)?.hexString == "f98074f0fc2e34b09d6ca973be900ef698718a323db5d55eb6a9633fc07659f8fcb1a22d11453ead8e36fe866de4adcbdb35be241b2828f21146f369184ced0e",
 				  keyPair4?.privateKey.sign(bytes: messageToSign)?.hexString ?? "-")
+		
+		let keyPair5 = KeyPair.hd(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase", andDerivationPath: "44'/1729'/0'/0'")
+		XCTAssert(keyPair5?.privateKey.bytes.hexString == "ebea8d3287af11f7ab844288baaddccef75ba8a862520eca180727ece2228a3115e40e65b90e549f1f8eee368bb47d12ffdbad8322004e47c7e9a2393b4d94e3", keyPair5?.privateKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair5?.publicKey.bytes.hexString == "15e40e65b90e549f1f8eee368bb47d12ffdbad8322004e47c7e9a2393b4d94e3", keyPair5?.publicKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair5?.publicKey.publicKeyHash == "tz1TmVDbFH63shXAzmmbDkYRH3nz1RSLV463", keyPair5?.publicKey.publicKeyHash ?? "-")
+		XCTAssert(keyPair5?.publicKey.base58CheckRepresentation == "edpktos7HPEb8SYPeZAiRQ2e96zxe12PaSiMsBxZVr12Bvi8uCEyUm", keyPair5?.publicKey.base58CheckRepresentation ?? "-")
+		XCTAssert(keyPair5?.privateKey.sign(bytes: messageToSign)?.hexString == "45825aeb7e4cb6515d783312e527d4932029fceae883f8a0cfde5c4b938f5412a1ae86413d7b2dff41fb243cefdd4cb08cc9665968acb185e305ac1ca6ca8d0b",
+				  keyPair5?.privateKey.sign(bytes: messageToSign)?.hexString ?? "-")
 	}
 }
