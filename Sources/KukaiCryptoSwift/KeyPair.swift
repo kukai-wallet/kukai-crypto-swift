@@ -117,7 +117,7 @@ public struct KeyPair {
 	 */
 	public static func hd(fromMnemonic mnemonic: Mnemonic, passphrase: String, andDerivationPath derivationPath: String = HD.defaultDerivationPath) -> KeyPair? {
 		do {
-			let seed = try mnemonic.seed(passphrase: "").hexString
+			let seed = try mnemonic.seed(passphrase: passphrase).hexString
 			return hd(fromSeedString: seed, andDerivationPath: derivationPath)
 			
 		} catch (let error) {
