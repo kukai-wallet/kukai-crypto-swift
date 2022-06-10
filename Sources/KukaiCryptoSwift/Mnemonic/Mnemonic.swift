@@ -13,7 +13,7 @@ public enum MnemonicError: Swift.Error {
 /**
  * A list of words which can generate a private key.
  */
-public struct Mnemonic: Equatable {
+public struct Mnemonic: Equatable, Codable {
 	
 	/// Helper enum used to choose the number of words for a mnemonic
 	public enum NumberOfWords: Int {
@@ -25,7 +25,7 @@ public struct Mnemonic: Equatable {
 	}
 	
 	/// The list of words as a single sentence.
-	public private(set) var phrase: String = ""
+	public var phrase: String = ""
 	
 	/// The list of words.
 	public var words: [String] {
@@ -113,5 +113,12 @@ public struct Mnemonic: Equatable {
 		}
 		
 		return Data(data)
+	}
+	
+	/**
+	 Scrub the phrase from memory by replacing with 0's
+	 */
+	public mutating func scrub() {
+		phrase = String(repeating: "0", count: phrase.count)
 	}
 }

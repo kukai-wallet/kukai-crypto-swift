@@ -14,10 +14,15 @@ import Sodium
 /// A struct used to provide a number of functions needed to handle derivation paths and derive nodes for creating HD key pairs
 public struct HD {
 	
+	// MARK: - Types and constants
+	
 	/// Default Tezos derivation path
 	public static let defaultDerivationPath = "m/44'/1729'/0'/0'"
 	
-	// MARK: - Types
+	/// Default Tezos derivation path with supplied index
+	public static func defaultDerivationPath(withAccountIndex index: Int) -> String {
+		return "m/44'/1729'/\(index)'/0'"
+	}
 	
 	/// Errors that can be thrown
 	public enum HDError: Error {

@@ -10,6 +10,12 @@ import Sodium
 import secp256k1
 import os.log
 
+/// Distingush between ed25519 (TZ1...) and secp256k1 (TZ2...) curves for creating and using wallet addresses
+public enum EllipticalCurve: String, Codable {
+	case ed25519
+	case secp256k1
+}
+
 /// A struct representing a both a `PrivateKey` and `PublicKey` with helper methods to create various kinds
 public struct KeyPair {
 	
