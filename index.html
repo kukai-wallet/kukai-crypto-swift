@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KukaiCryptoSwift - KukaiCryptoSwift</title>
+    <link rel="stylesheet" type="text/css" href="https://kukai.app/kukai-crypto-swift/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="https://kukai.app/kukai-crypto-swift/">
+            <strong>
+                KukaiCryptoSwift
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#structures">Structures</a></li><li><a href="#enumerations">Enumerations</a></li><li><a href="#protocols">Protocols</a></li><li><a href="#variables">Variables</a></li><li><a href="#extensions">Extensions</a></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+                <section id="structures">
+        <h2>Structures</h2>
+        <dl>
+            <dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/Base58" title="structure - Base58">
+        Base58
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/Base58Check" title="structure - Base58Check">
+        Base58Check
+    </a>
+</dt>
+<dd>
+    <p>A set of Base58Check coding methods.</p>
+
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/Bech32" title="structure - Bech32">
+        Bech32
+    </a>
+</dt>
+<dd>
+    <p>A set of Bech32 coding methods.</p>
+
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/HD" title="structure - HD">
+        HD
+    </a>
+</dt>
+<dd>
+    <p>A struct used to provide a number of functions needed to handle derivation paths and derive nodes for creating HD key pairs</p>
+
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/HD_Node" title="structure - HD.Node">
+        HD.​Node
+    </a>
+</dt>
+<dd>
+    <p>A struct representing a Node in a HD chain</p>
+
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/KeyPair" title="structure - KeyPair">
+        Key​Pair
+    </a>
+</dt>
+<dd>
+    <p>A struct representing a both a <code>PrivateKey</code> and <code>PublicKey</code> with helper methods to create various kinds</p>
+
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/Mnemonic" title="structure - Mnemonic">
+        Mnemonic
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/PrivateKey" title="structure - PrivateKey">
+        Private​Key
+    </a>
+</dt>
+<dd>
+    <p>A struct representing a PrivateKey</p>
+
+</dd>
+<dt class="structure">
+    <a href="https://kukai.app/kukai-crypto-swift/PublicKey" title="structure - PublicKey">
+        Public​Key
+    </a>
+</dt>
+<dd>
+    <p>A struct representing a PublicKey</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="enumerations">
+        <h2>Enumerations</h2>
+        <dl>
+            <dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/RandomBytesError" title="enumeration - RandomBytesError">
+        Random​Bytes​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/ByteHexEncodingErrors" title="enumeration - ByteHexEncodingErrors">
+        Byte​Hex​Encoding​Errors
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/HD_HDError" title="enumeration - HD.HDError">
+        HD.​HDError
+    </a>
+</dt>
+<dd>
+    <p>Errors that can be thrown</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/EllipticalCurve" title="enumeration - EllipticalCurve">
+        Elliptical​Curve
+    </a>
+</dt>
+<dd>
+    <p>Distingush between ed25519 (TZ1...) and secp256k1 (TZ2...) curves for creating and using wallet addresses</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/EntropyGeneratorError" title="enumeration - EntropyGeneratorError">
+        Entropy​Generator​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/MnemonicError" title="enumeration - MnemonicError">
+        Mnemonic​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Mnemonic_NumberOfWords" title="enumeration - Mnemonic.NumberOfWords">
+        Mnemonic.​Number​OfWords
+    </a>
+</dt>
+<dd>
+    <p>Helper enum used to choose the number of words for a mnemonic</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/WordList" title="enumeration - WordList">
+        Word​List
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix" title="enumeration - Prefix">
+        Prefix
+    </a>
+</dt>
+<dd>
+    <p>Prefixes needed to add to hex strings to denote elliptical curves</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix_Watermark" title="enumeration - Prefix.Watermark">
+        Prefix.​Watermark
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix_Keys" title="enumeration - Prefix.Keys">
+        Prefix.​Keys
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix_Keys_Ed25519" title="enumeration - Prefix.Keys.Ed25519">
+        Prefix.​Keys.​Ed25519
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix_Keys_P256" title="enumeration - Prefix.Keys.P256">
+        Prefix.​Keys.​P256
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix_Keys_Secp256k1" title="enumeration - Prefix.Keys.Secp256k1">
+        Prefix.​Keys.​Secp256k1
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="https://kukai.app/kukai-crypto-swift/Prefix_Address" title="enumeration - Prefix.Address">
+        Prefix.​Address
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="protocols">
+        <h2>Protocols</h2>
+        <dl>
+            <dt class="protocol">
+    <a href="https://kukai.app/kukai-crypto-swift/EntropyGenerator" title="protocol - EntropyGenerator">
+        Entropy​Generator
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="variables">
+        <h2>Variables</h2>
+        <dl>
+            <dt class="variable">
+    <a href="https://kukai.app/kukai-crypto-swift/MnemonicWordList_Chinese" title="variable - MnemonicWordList_Chinese">
+        Mnemonic​Word​List_Chinese
+    </a>
+</dt>
+<dd>
+    <p>https://raw.githubusercontent.com/CikeQiu/CKMnemonic/master/CKMnemonic/CKMnemonic/CKMnemonic/Language/Chinese.swift</p>
+
+</dd>
+<dt class="variable">
+    <a href="https://kukai.app/kukai-crypto-swift/MnemonicWordList_English" title="variable - MnemonicWordList_English">
+        Mnemonic​Word​List_English
+    </a>
+</dt>
+<dd>
+    <p>https://raw.githubusercontent.com/D-Technologies/EthereumKit/master/EthereumKit/Mnemonic/English.swift</p>
+
+</dd>
+        </dl>
+    </section>
+<section id="extensions">
+    <h2>Extensions</h2>
+    <dl>
+    <dt class="extension">
+    <a href="https://kukai.app/kukai-crypto-swift/Data">Data</a>
+</dt>
+<dd></dd>
+<dt class="extension">
+    <a href="https://kukai.app/kukai-crypto-swift/DataProtocol">DataProtocol</a>
+</dt>
+<dd></dd>
+<dt class="extension">
+    <a href="https://kukai.app/kukai-crypto-swift/Int">Int</a>
+</dt>
+<dd></dd>
+<dt class="extension">
+    <a href="https://kukai.app/kukai-crypto-swift/Sodium">Sodium</a>
+</dt>
+<dd></dd>
+    </dl>
+<section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2022-06-10T14:36:43+0000">June 10, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

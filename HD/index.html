@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KukaiCryptoSwift - HD</title>
+    <link rel="stylesheet" type="text/css" href="https://kukai.app/kukai-crypto-swift/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="https://kukai.app/kukai-crypto-swift/">
+            <strong>
+                KukaiCryptoSwift
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#hd.defaultderivationpath">default​Derivation​Path</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#hd.defaultderivationpath(withaccountindex:)">default​Derivation​Path(with​Account​Index:​)</a></li><li class="function"><a href="#hd.hmac(message:key:)">hmac(message:​key:​)</a></li><li class="function"><a href="#hd.derivenode(message:key:)">derive​Node(message:​key:​)</a></li><li class="function"><a href="#hd.deriverootnode(seed:)">derive​Root​Node(seed:​)</a></li><li class="function"><a href="#hd.derivechildnode(node:index:)">derive​Child​Node(node:​index:​)</a></li><li class="function"><a href="#hd.convertderivationpathtoarray(_:)">convert​Derivation​Path​ToArray(_:​)</a></li><li class="function"><a href="#hd.validatederivationpath(_:)">validate​Derivation​Path(_:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">HD</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">HD</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A struct used to provide a number of functions needed to handle derivation paths and derive nodes for creating HD key pairs</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        
+        <h3>Nested Types</h3>
+<dl>
+    <dt class="enumeration"><code><a href="https://kukai.app/kukai-crypto-swift/HD_HDError">HD.HDError</a></code></dt>
+<dd><p>Errors that can be thrown</p>
+</dd>
+<dt class="structure"><code><a href="https://kukai.app/kukai-crypto-swift/HD_Node">HD.Node</a></code></dt>
+<dd><p>A struct representing a Node in a HD chain</p>
+</dd>
+</dl>
+</section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="hd.defaultderivationpath">
+    <h3>
+        <code><a href="#hd.defaultderivationpath">default​Derivation​Path</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">let</span> <span class="variable">defaultDerivationPath</span> = <span class="string literal">"</span><span class="string literal">m/44'/1729'/0'/0'</span><span class="string literal">"</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Default Tezos derivation path</p>
+
+</div>
+</div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="hd.defaultderivationpath(withaccountindex:)">
+    <h3>
+        <code><a href="#hd.defaultderivationpath(withaccountindex:)">default​Derivation​Path(with​Account​Index:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">defaultDerivationPath</span>(<span class="variable">withAccountIndex</span> <span class="variable">index</span>: <span class="type">Int</span>) -&gt; <span class="type">String</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Default Tezos derivation path with supplied index</p>
+
+</div>
+</div>
+<div role="article" class="function" id="hd.hmac(message:key:)">
+    <h3>
+        <code><a href="#hd.hmac(message:key:)">hmac(message:​key:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hmac</span>(<span class="variable">message</span>: <span class="type">Data</span>, <span class="variable">key</span>: <span class="type">Data</span>) -&gt; <span class="type">Data</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Compute a HMAC using SHA512</p>
+
+</div>
+</div>
+<div role="article" class="function" id="hd.derivenode(message:key:)">
+    <h3>
+        <code><a href="#hd.derivenode(message:key:)">derive​Node(message:​key:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">deriveNode</span>(<span class="variable">message</span>: <span class="type">Data</span>, <span class="variable">key</span>: <span class="type">Data</span>) <span class="keyword">throws</span> -&gt; <span class="type">Node</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Derive a nnode from a message and a key</p>
+
+</div>
+</div>
+<div role="article" class="function" id="hd.deriverootnode(seed:)">
+    <h3>
+        <code><a href="#hd.deriverootnode(seed:)">derive​Root​Node(seed:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">deriveRootNode</span>(<span class="variable">seed</span>: <span class="type">Data</span>) <span class="keyword">throws</span> -&gt; <span class="type">Node</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Derive the root (or master) node from cryptographic seed data</p>
+
+</div>
+</div>
+<div role="article" class="function" id="hd.derivechildnode(node:index:)">
+    <h3>
+        <code><a href="#hd.derivechildnode(node:index:)">derive​Child​Node(node:​index:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">deriveChildNode</span>(<span class="variable">node</span>: <span class="type">Node</span>, <span class="variable">index</span>: <span class="type">BigUInt</span>) <span class="keyword">throws</span> -&gt; <span class="type">Node</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Derive a child node from a <code>Node</code> and a given index</p>
+
+</div>
+</div>
+<div role="article" class="function" id="hd.convertderivationpathtoarray(_:)">
+    <h3>
+        <code><a href="#hd.convertderivationpathtoarray(_:)">convert​Derivation​Path​ToArray(_:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">convertDerivationPathToArray</span>(<span class="keyword">_</span> <span class="variable">derivationPath</span>: <span class="type">String</span>) <span class="keyword">throws</span> -&gt; [<span class="type">BigUInt</span>]  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Convert a derivation path into an array of <code>BigUInt</code> so it can be interated</p>
+
+</div>
+</div>
+<div role="article" class="function" id="hd.validatederivationpath(_:)">
+    <h3>
+        <code><a href="#hd.validatederivationpath(_:)">validate​Derivation​Path(_:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">validateDerivationPath</span>(<span class="keyword">_</span> <span class="variable">derivationPath</span>: <span class="type">String</span>) -&gt; <span class="type">Bool</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Very basic validation of a derivation path</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2022-06-10T14:36:43+0000">June 10, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>
