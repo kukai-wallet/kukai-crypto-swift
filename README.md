@@ -1,6 +1,6 @@
 # Kukai Crypto Swift
 
-[![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20MacOS-blue)](https://img.shields.io/badge/Platforms-iOS%20%7C%20MacOS-blue)
+[![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS-blue)](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS-blue)
 [![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/kukai-wallet/kukai-crypto-swift/blob/main/LICENSE)
 
