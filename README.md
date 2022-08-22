@@ -56,7 +56,7 @@ let mnemonic = try Mnemonic(numberOfWords: .twentyFour)
 ### Create a Mnemonic from an existing phrase
 
 ```Swift
-let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
+let mnemonic = try Mnemonic(seedPhrase: "word1 word2 word3 ...")
 ```
 
 ### Create a regular key pair and get a Tezos address
@@ -64,13 +64,13 @@ let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube wor
 ```Swift
 let keyPair = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
 
-print(keyPair.publicKey.publicKeyHash) // tz1T3QZ5w4K11RS3vy4TXiZepraV9R5GzsxG
+print(keyPair.publicKey.publicKeyHash) // tz1Abc123...
 ```
 
 ```Swift
 let keyPair = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
 
-print(keyPair.publicKey.publicKeyHash) // tz2UiZQJwaVAKxRuYxV8Tx5k8a64gZx1ZwYJ
+print(keyPair.publicKey.publicKeyHash) // tz2def456...
 
 ```
 
