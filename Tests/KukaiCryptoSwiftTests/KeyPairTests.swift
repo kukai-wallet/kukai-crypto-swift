@@ -91,4 +91,13 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair5?.privateKey.sign(bytes: messageToSign)?.hexString == "45825aeb7e4cb6515d783312e527d4932029fceae883f8a0cfde5c4b938f5412a1ae86413d7b2dff41fb243cefdd4cb08cc9665968acb185e305ac1ca6ca8d0b",
 				  keyPair5?.privateKey.sign(bytes: messageToSign)?.hexString ?? "-")
 	}
+	
+	func testEllipticalCurve() {
+		XCTAssert(EllipticalCurve.fromAddress("TZ1abc123") == .ed25519)
+		XCTAssert(EllipticalCurve.fromAddress("TZ2abc123") == .secp256k1)
+		XCTAssert(EllipticalCurve.fromAddress("tz1abc123") == .ed25519)
+		XCTAssert(EllipticalCurve.fromAddress("tz2abc123") == .secp256k1)
+		XCTAssert(EllipticalCurve.fromAddress("tZ1abc123") == .ed25519)
+		XCTAssert(EllipticalCurve.fromAddress("tZ2abc123") == .secp256k1)
+	}
 }
