@@ -29,7 +29,7 @@ public struct Mnemonic: Equatable, Codable {
 	
 	/// The list of words.
 	public var words: [String] {
-		phrase.split(separator: " ").map(String.init)
+		phrase.lowercased().split(separator: " ").map(String.init)
 	}
 	
 	/**
@@ -120,5 +120,26 @@ public struct Mnemonic: Equatable, Codable {
 	 */
 	public mutating func scrub() {
 		phrase = String(repeating: "0", count: phrase.count)
+	}
+	
+	/**
+	 Check a mnemonic is of the correct length, and is made up of valid BIP39 words
+	 */
+	public func isValid(in vocabulary: WordList = .english) -> Bool {
+		let words = self.words
+		
+		if words.count != 12 && words.count != 15 && words.count != 18 && words.count != 21 && words.count != 24 {
+			return false
+		}
+		
+		let wordList = vocabulary.words
+		
+		for word in words {
+			guard wordList.firstIndex(of: word) != nil else {
+				return false
+			}
+		}
+		
+		return true
 	}
 }

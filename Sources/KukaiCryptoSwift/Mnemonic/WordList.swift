@@ -8,7 +8,7 @@ public enum WordList: String {
 	case chinese
 	case english
 	
-	fileprivate var words: [String] {
+	var words: [String] {
 		switch self {
 			case .chinese:
 				return MnemonicWordList_Chinese
