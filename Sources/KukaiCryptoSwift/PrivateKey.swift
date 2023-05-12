@@ -110,13 +110,9 @@ public struct PrivateKey: Codable {
 	 - Returns: A signature from the input.
 	 */
 	public func sign(bytes: [UInt8]) -> [UInt8]? {
-		guard let bytesToSign = prepareBytesForSigning(bytes) else {
-			return nil
-		}
-		
 		switch signingCurve {
 			case .ed25519:
-				return Sodium.shared.sign.signature(message: bytesToSign, secretKey: self.bytes)
+				return Sodium.shared.sign.signature(message: bytes, secretKey: self.bytes)
 				
 			case .secp256k1:
 				var signature = secp256k1_ecdsa_signature()
@@ -124,7 +120,7 @@ public struct PrivateKey: Codable {
 				var output = [UInt8](repeating: 0, count: signatureLength)
 				
 				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)),
-					  secp256k1_ecdsa_sign(context, &signature, bytesToSign, self.bytes, nil, nil) != 0,
+					  secp256k1_ecdsa_sign(context, &signature, bytes, self.bytes, nil, nil) != 0,
 					  secp256k1_ecdsa_signature_serialize_compact(context, &output, &signature) != 0
 				else {
 					return nil
@@ -136,12 +132,6 @@ public struct PrivateKey: Codable {
 				
 				return output
 		}
-	}
-	
-	/// Prepare bytes for signing by applying a watermark and hashing.
-	private func prepareBytesForSigning(_ bytes: [UInt8]) -> [UInt8]? {
-		let watermarkedOperation = Prefix.Watermark.operation + bytes
-		return Sodium.shared.genericHash.hash(message: watermarkedOperation, outputLength: 32)
 	}
 }
 
