@@ -99,13 +99,9 @@ public struct PublicKey: Codable {
 	 - Returns: True if the public key and signature match the given bytes.
 	 */
 	public func verify(signature: [UInt8], bytes: [UInt8]) -> Bool {
-		guard let bytesToVerify = prepareBytesForVerification(bytes) else {
-			return false
-		}
-		
 		switch signingCurve {
 			case .ed25519:
-				return Sodium.shared.sign.verify(message: bytesToVerify, publicKey: self.bytes, signature: signature)
+				return Sodium.shared.sign.verify(message: signature, publicKey: self.bytes, signature: signature)
 				
 			case .secp256k1:
 				let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY))
@@ -118,14 +114,8 @@ public struct PublicKey: Codable {
 				secp256k1_ecdsa_signature_parse_compact(context!, &cSignature, signature)
 				_ = secp256k1_ec_pubkey_parse(context!, &publicKey, self.bytes, self.bytes.count)
 				
-				return secp256k1_ecdsa_verify(context!, &cSignature, bytesToVerify, &publicKey) == 1
+				return secp256k1_ecdsa_verify(context!, &cSignature, signature, &publicKey) == 1
 		}
-	}
-	
-	/// Prepare bytes for verification by applying a watermark and hashing.
-	private func prepareBytesForVerification(_ bytes: [UInt8]) -> [UInt8]? {
-		let watermarkedOperation = Prefix.Watermark.operation + bytes
-		return Sodium.shared.genericHash.hash(message: watermarkedOperation, outputLength: 32)
 	}
 }
 
