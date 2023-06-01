@@ -135,7 +135,7 @@ public struct KeyPair {
 	
 	
 	
-	// MARK: - Private Helpers
+	// MARK: - Helpers
 	
 	/// Helper method to take a secp256k1 private key (for a regualr keypair) and use it to create a public key for the same curve
 	public static func secp256k1PublicKey(fromPrivateKeyBytes pkBytes: [UInt8]) -> PublicKey? {
@@ -155,5 +155,24 @@ public struct KeyPair {
 		}
 		
 		return PublicKey(publicKeyBytes, signingCurve: .secp256k1)
+	}
+	
+	/// Helper method to uncompress a secp256k1 public key
+	public static func secp256k1PublicKey_uncompressed(fromBytes: [UInt8]) -> [UInt8] {
+		var publicKey = secp256k1_pubkey()
+		var outputLength = 65
+		var outputBytes = [UInt8](repeating: 0, count: outputLength)
+		
+		guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)),
+			  secp256k1_ec_pubkey_parse(context, &publicKey, fromBytes, fromBytes.count) != 0,
+			  secp256k1_ec_pubkey_serialize(context, &outputBytes, &outputLength, &publicKey, UInt32(SECP256K1_EC_UNCOMPRESSED)) != 0 else {
+			return []
+		}
+		
+		defer {
+			secp256k1_context_destroy(context)
+		}
+		
+		return outputBytes
 	}
 }

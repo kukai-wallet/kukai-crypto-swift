@@ -102,4 +102,26 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(EllipticalCurve.fromAddress("tZ1abc123") == .ed25519)
 		XCTAssert(EllipticalCurve.fromAddress("tZ2abc123") == .secp256k1)
 	}
+	
+	func testUncompress() throws {
+		let mnemonic = try Mnemonic(seedPhrase: "gym exact clown can answer hope sample mirror knife twenty powder super imitate lion churn almost shed chalk dust civil gadget pyramid helmet trade")
+		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
+		
+		let uncompressed = KeyPair.secp256k1PublicKey_uncompressed(fromBytes: keyPair1?.publicKey.bytes ?? [])
+		let data = Data(bytes: uncompressed, count: uncompressed.count)
+		let dataString = data.hexString
+		
+		XCTAssert(dataString.count == 130, dataString.count.description)
+		XCTAssert(dataString == "047b6d7bf2cbb376149211eacab517359cb035b0f0c36f57f7fe923a2453c7a8f1a594260c94501bc7ad63324b42638f768840948d1f1cadf9cb6d1ce456b7c8dc", dataString)
+		
+		
+		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
+		
+		let uncompressed2 = KeyPair.secp256k1PublicKey_uncompressed(fromBytes: keyPair2?.publicKey.bytes ?? [])
+		let data2 = Data(bytes: uncompressed2, count: uncompressed2.count)
+		let dataString2 = data2.hexString
+		
+		XCTAssert(dataString2.count == 0, dataString2.count.description)
+		XCTAssert(dataString2 == "", dataString2)
+	}
 }
