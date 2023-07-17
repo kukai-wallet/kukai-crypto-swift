@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "KukaiCryptoSwift",
 	platforms: [
-		.macOS(.v10_15),
-		.iOS(.v13),
+		.iOS("15.0"),
+		.macOS("10.15"),
 	],
     products: [
         .library(
