@@ -38,51 +38,6 @@ public struct PrivateKey: Codable {
 	// MARK: - Init
 	
 	/**
-	 Initialize a key with the given hex seed string.
-	 - parameter seedString a hex encoded seed string.
-	 - parameter signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
-	 */
-	public init?(seedString: String, signingCurve: EllipticalCurve = .ed25519) {
-		guard let seed = Sodium.shared.utils.hex2bin(seedString), let keyPair = Sodium.shared.sign.keyPair(seed: seed) else {
-			return nil
-		}
-		
-		// Key is 64 bytes long. The first 32 bytes are the private key. Sodium, the ed25519 library expects extended
-		// private keys, so pass down the full 64 bytes.
-		let secretKeyBytes = keyPair.secretKey
-		switch signingCurve {
-			case .ed25519:
-				self.init(secretKeyBytes, signingCurve: signingCurve)
-				
-			case .secp256k1:
-				let privateKeyBytes = Array(secretKeyBytes[..<32])
-				self.init(privateKeyBytes, signingCurve: signingCurve)
-		}
-		
-	}
-	
-	/**
-	 Initialize a key with the given base58check encoded string.
-	 - parameter string: A base58check encoded string.
-	 - parameter signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
-	 */
-	public init?(_ string: String, signingCurve: EllipticalCurve = .ed25519) {
-		switch signingCurve {
-			case .ed25519:
-				guard let bytes = Base58Check.decode(string: string, prefix: Prefix.Keys.Ed25519.secret) else {
-					return nil
-				}
-				self.init(bytes)
-				
-			case .secp256k1:
-				guard let bytes = Base58Check.decode(string: string, prefix: Prefix.Keys.Secp256k1.secret) else {
-					return nil
-				}
-				self.init(bytes, signingCurve: .secp256k1)
-		}
-	}
-	
-	/**
 	 Initialize a key with the given bytes.
 	 - parameter bytes: Raw bytes of the private key.
 	 - parameter signingCurve: The elliptical curve to use for the key. Defaults to ed25519.
@@ -91,6 +46,10 @@ public struct PrivateKey: Codable {
 		self.bytes = bytes
 		self.signingCurve = signingCurve
 	}
+	
+	
+	
+	// MARK: - Utils
 	
 	/**
 	 Sign the given hex encoded string with the given key.

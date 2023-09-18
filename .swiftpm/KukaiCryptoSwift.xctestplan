@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "F1EB509B-4128-4914-BD49-6306AE2AF23E",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "KukaiCryptoSwift",
+          "name" : "KukaiCryptoSwift"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "KukaiCryptoSwiftTests",
+        "name" : "KukaiCryptoSwiftTests"
+      }
+    }
+  ],
+  "version" : 1
+}

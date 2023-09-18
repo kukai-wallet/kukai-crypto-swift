@@ -21,13 +21,40 @@ final class MnemonicTests: XCTestCase {
 	}
 	
 	func testNumberOfWords() throws {
-		let mnemonic = try Mnemonic(numberOfWords: .twentyFour)
-		XCTAssert(mnemonic.words.count == 24)
+		let mnemonic12 = try Mnemonic(numberOfWords: .twelve)
+		XCTAssert(mnemonic12.words.count == 12)
+		
+		let mnemonic15 = try Mnemonic(numberOfWords: .fifteen)
+		XCTAssert(mnemonic15.words.count == 15)
+		
+		let mnemonic18 = try Mnemonic(numberOfWords: .eighteen)
+		XCTAssert(mnemonic18.words.count == 18)
+		
+		let mnemonic21 = try Mnemonic(numberOfWords: .twentyOne)
+		XCTAssert(mnemonic21.words.count == 21)
+		
+		let mnemonic24 = try Mnemonic(numberOfWords: .twentyFour)
+		XCTAssert(mnemonic24.words.count == 24)
+	}
+	
+	func testChinese() throws {
+		let mnemonic24 = try Mnemonic(numberOfWords: .twentyFour, in: .chinese)
+		XCTAssert(mnemonic24.words.count == 24)
+		
+		let firstWord = mnemonic24.words.first ?? ""
+		let containedInEnglish = WordList.english.words.contains(firstWord)
+		let containedInChinese = WordList.chinese.words.contains(firstWord)
+		
+		XCTAssert(!containedInEnglish)
+		XCTAssert(containedInChinese)
 	}
 	
 	func testEntropy() throws {
-		let mnemonic = try Mnemonic(entropy: Int.strongest)
-		XCTAssert(mnemonic.words.count == 24)
+		let mnemonic1 = try Mnemonic(entropy: Int.strongest)
+		XCTAssert(mnemonic1.words.count == 24)
+		
+		let mnemonic2 = try Mnemonic(entropy: "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f")
+		XCTAssert(mnemonic2.words.count == 12)
 	}
 	
 	func testValid() throws {

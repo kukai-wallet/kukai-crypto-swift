@@ -58,26 +58,9 @@ public struct PublicKey: Codable {
 		self.signingCurve = signingCurve
 	}
 	
-	/// Initialize a public key with the given base58check encoded string.
-	public init?(string: String, signingCurve: EllipticalCurve) {
-		switch signingCurve {
-			case .ed25519:
-				guard let bytes = Base58Check.decode(string: string, prefix: Prefix.Keys.Ed25519.public) else {
-					return nil
-				}
-				self.init(bytes, signingCurve: signingCurve)
-				
-			case .secp256k1:
-				guard let bytes = Base58Check.decode(string: string, prefix: Prefix.Keys.Secp256k1.public) else {
-					return nil
-				}
-				self.init(bytes, signingCurve: signingCurve)
-		}
-	}
 	
 	
-	
-	// MARK: - Crypto functions
+	// MARK: - Utils
 	
 	/**
 	 Verify that the given signature matches the given input hex.
@@ -85,11 +68,11 @@ public struct PublicKey: Codable {
 	 - parameter hex: The hex to check.
 	 - Returns: True if the public key and signature match the given bytes.
 	 */
-	public func verify(signature: [UInt8], hex: String) -> Bool {
+	public func verify(message: [UInt8], signature: [UInt8], hex: String) -> Bool {
 		guard let bytes = Sodium.shared.utils.hex2bin(hex) else {
 			return false
 		}
-		return verify(signature: signature, bytes: bytes)
+		return verify(message: message, signature: signature, bytes: bytes)
 	}
 	
 	/**
@@ -98,10 +81,10 @@ public struct PublicKey: Codable {
 	 - parameter bytes: The bytes to check.
 	 - Returns: True if the public key and signature match the given bytes.
 	 */
-	public func verify(signature: [UInt8], bytes: [UInt8]) -> Bool {
+	public func verify(message: [UInt8], signature: [UInt8], bytes: [UInt8]) -> Bool {
 		switch signingCurve {
 			case .ed25519:
-				return Sodium.shared.sign.verify(message: signature, publicKey: self.bytes, signature: signature)
+				return Sodium.shared.sign.verify(message: message, publicKey: self.bytes, signature: signature)
 				
 			case .secp256k1:
 				let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY))
@@ -114,7 +97,7 @@ public struct PublicKey: Codable {
 				secp256k1_ecdsa_signature_parse_compact(context!, &cSignature, signature)
 				_ = secp256k1_ec_pubkey_parse(context!, &publicKey, self.bytes, self.bytes.count)
 				
-				return secp256k1_ecdsa_verify(context!, &cSignature, signature, &publicKey) == 1
+				return secp256k1_ecdsa_verify(context!, &cSignature, message, &publicKey) == 1
 		}
 	}
 }
