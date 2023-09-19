@@ -97,5 +97,5 @@ print("Result hex: \(result.hexString)") // c4d20c77d627d8c07e....
 
 # Documentation
 
-Compiled Swift Doc's can be found [here](https://kukai.app/kukai-crypto-swift/)
+Compiled Swift Doc's can be found [here](https://kukai-crypto-swift.kukai.app/)
 

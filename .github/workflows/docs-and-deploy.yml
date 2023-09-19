@@ -18,7 +18,7 @@ jobs:
           module-name: KukaiCryptoSwift
           format: "html"
           output: "Documentation"
-          base-url: "https://kukai.app/kukai-crypto-swift/"
+          base-url: "https://kukai-crypto-swift.kukai.app/"
       - name: Update Permissions
         run: 'sudo chown --recursive $USER Documentation'
       - name: Deploy to GitHub Pages
