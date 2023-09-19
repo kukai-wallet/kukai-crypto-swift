@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KukaiCryptoSwift - KeyPair</title>
-    <link rel="stylesheet" type="text/css" href="https://kukai.app/kukai-crypto-swift/all.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="https://kukai-crypto-swift.kukai.app/all.css" media="all" />
 </head>
 <body>
     <header>
-        <a href="https://kukai.app/kukai-crypto-swift/">
+        <a href="https://kukai-crypto-swift.kukai.app/">
             <strong>
                 KukaiCryptoSwift
             </strong>
@@ -52,7 +52,7 @@
         <code><a href="#keypair.privatekey">private​Key</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">privateKey</span>: <a href="https://kukai.app/kukai-crypto-swift/PrivateKey"><span class="type">PrivateKey</span></a></body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">privateKey</span>: <a href="https://kukai-crypto-swift.kukai.app/PrivateKey"><span class="type">PrivateKey</span></a></body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>The underlying <code>PrivateKey</code> of the pair</p>
@@ -64,7 +64,7 @@
         <code><a href="#keypair.publickey">public​Key</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">publicKey</span>: <a href="https://kukai.app/kukai-crypto-swift/PublicKey"><span class="type">PublicKey</span></a></body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">publicKey</span>: <a href="https://kukai-crypto-swift.kukai.app/PublicKey"><span class="type">PublicKey</span></a></body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>The underlying <code>PublicKey</code> of the pair</p>
@@ -80,7 +80,7 @@
         <code><a href="#keypair.regular(fromseedstring:andsigningcurve:)">regular(from​Seed​String:​and​Signing​Curve:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">regular</span>(<span class="variable">fromSeedString</span> <span class="variable">seedString</span>: <span class="type">String</span>, <span class="variable">andSigningCurve</span> <span class="variable">signingCurve</span>: <a href="https://kukai.app/kukai-crypto-swift/EllipticalCurve"><span class="type">EllipticalCurve</span></a> = .<span class="variable">ed25519</span>) -&gt; <a href="https://kukai.app/kukai-crypto-swift/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">regular</span>(<span class="variable">fromSeedString</span> <span class="variable">seedString</span>: <span class="type">String</span>, <span class="variable">andSigningCurve</span> <span class="variable">signingCurve</span>: <a href="https://kukai-crypto-swift.kukai.app/EllipticalCurve"><span class="type">EllipticalCurve</span></a> = .<span class="variable">ed25519</span>) -&gt; <a href="https://kukai-crypto-swift.kukai.app/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a regular (non HD) <code>KeyPair</code> from a hex seed string and optional <code>EllipticalCurve</code> (defaults to <code>.ed25519</code>, which returtns a TZ1 address)</p>
@@ -120,7 +120,7 @@
         <code><a href="#keypair.regular(frommnemonic:passphrase:andsigningcurve:)">regular(from​Mnemonic:​passphrase:​and​Signing​Curve:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">regular</span>(<span class="variable">fromMnemonic</span> <span class="variable">mnemonic</span>: <a href="https://kukai.app/kukai-crypto-swift/Mnemonic"><span class="type">Mnemonic</span></a>, <span class="variable">passphrase</span>: <span class="type">String</span>, <span class="variable">andSigningCurve</span> <span class="variable">signingCurve</span>: <a href="https://kukai.app/kukai-crypto-swift/EllipticalCurve"><span class="type">EllipticalCurve</span></a> = .<span class="variable">ed25519</span>) -&gt; <a href="https://kukai.app/kukai-crypto-swift/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">regular</span>(<span class="variable">fromMnemonic</span> <span class="variable">mnemonic</span>: <a href="https://kukai-crypto-swift.kukai.app/Mnemonic"><span class="type">Mnemonic</span></a>, <span class="variable">passphrase</span>: <span class="type">String</span>, <span class="variable">andSigningCurve</span> <span class="variable">signingCurve</span>: <a href="https://kukai-crypto-swift.kukai.app/EllipticalCurve"><span class="type">EllipticalCurve</span></a> = .<span class="variable">ed25519</span>) -&gt; <a href="https://kukai-crypto-swift.kukai.app/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a regular (non HD) <code>KeyPair</code> from a <code>Mnemonic</code> instance</p>
@@ -160,7 +160,7 @@
         <code><a href="#keypair.hd(fromseedstring:andderivationpath:)">hd(from​Seed​String:​and​Derivation​Path:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hd</span>(<span class="variable">fromSeedString</span> <span class="variable">seedString</span>: <span class="type">String</span>, <span class="variable">andDerivationPath</span> <span class="variable">derivationPath</span>: <span class="type">String</span> = <span class="variable">HD</span>.<span class="variable">defaultDerivationPath</span>) -&gt; <a href="https://kukai.app/kukai-crypto-swift/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hd</span>(<span class="variable">fromSeedString</span> <span class="variable">seedString</span>: <span class="type">String</span>, <span class="variable">andDerivationPath</span> <span class="variable">derivationPath</span>: <span class="type">String</span> = <span class="variable">HD</span>.<span class="variable">defaultDerivationPath</span>) -&gt; <a href="https://kukai-crypto-swift.kukai.app/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a HD <code>KeyPair</code> from a hex seed string and optional Derivation Path (defaults to m/44'/1729'/0'/0' ). Only TZ1 are produceable</p>
@@ -200,7 +200,7 @@
         <code><a href="#keypair.hd(frommnemonic:passphrase:andderivationpath:)">hd(from​Mnemonic:​passphrase:​and​Derivation​Path:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hd</span>(<span class="variable">fromMnemonic</span> <span class="variable">mnemonic</span>: <a href="https://kukai.app/kukai-crypto-swift/Mnemonic"><span class="type">Mnemonic</span></a>, <span class="variable">passphrase</span>: <span class="type">String</span>, <span class="variable">andDerivationPath</span> <span class="variable">derivationPath</span>: <span class="type">String</span> = <span class="variable">HD</span>.<span class="variable">defaultDerivationPath</span>) -&gt; <a href="https://kukai.app/kukai-crypto-swift/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hd</span>(<span class="variable">fromMnemonic</span> <span class="variable">mnemonic</span>: <a href="https://kukai-crypto-swift.kukai.app/Mnemonic"><span class="type">Mnemonic</span></a>, <span class="variable">passphrase</span>: <span class="type">String</span>, <span class="variable">andDerivationPath</span> <span class="variable">derivationPath</span>: <span class="type">String</span> = <span class="variable">HD</span>.<span class="variable">defaultDerivationPath</span>) -&gt; <a href="https://kukai-crypto-swift.kukai.app/KeyPair"><span class="type">KeyPair</span></a>?  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a HD <code>KeyPair</code> from a <code>Mnemonic</code> instance</p>
@@ -240,7 +240,7 @@
         <code><a href="#keypair.secp256k1publickey(fromprivatekeybytes:)">secp256k1Public​Key(from​Private​Key​Bytes:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">secp256k1PublicKey</span>(<span class="variable">fromPrivateKeyBytes</span> <span class="variable">pkBytes</span>: [<span class="type">UInt8</span>]) -&gt; <a href="https://kukai.app/kukai-crypto-swift/PublicKey"><span class="type">PublicKey</span></a>?  </body></html></code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">secp256k1PublicKey</span>(<span class="variable">fromPrivateKeyBytes</span> <span class="variable">pkBytes</span>: [<span class="type">UInt8</span>]) -&gt; <a href="https://kukai-crypto-swift.kukai.app/PublicKey"><span class="type">PublicKey</span></a>?  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Helper method to take a secp256k1 private key (for a regualr keypair) and use it to create a public key for the same curve</p>
@@ -268,7 +268,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2023-06-01T13:14:50+0000">June 1, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+    Generated on <time datetime="2023-09-19T08:41:50+0000">September 19, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
 </p>
     </footer>
 </body>
