@@ -150,7 +150,10 @@ public struct Mnemonic: Equatable, Codable {
 		let entropyBits = String(bits.prefix(dividerIndex))
 		let checksumBits = String(bits.suffix(bits.count - dividerIndex))
 		
-		let regex = try! NSRegularExpression(pattern: "[01]{1,8}", options: .caseInsensitive)
+		guard let regex = try? NSRegularExpression(pattern: "[01]{1,8}", options: .caseInsensitive) else {
+			return false
+		}
+		
 		let entropyBytes = regex.matches(in: entropyBits, options: [], range: NSRange(location: 0, length: entropyBits.count)).map {
 			UInt8(strtoul(String(entropyBits[Range($0.range, in: entropyBits)!]), nil, 2))
 		}

@@ -13,50 +13,50 @@ final class KeyPairTests: XCTestCase {
 	func testRegular() throws {
 		let messageToSign = "something very interesting that needs to be signed".bytes
 		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
-		let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
+		let mnemonic = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		
 		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
 		let signature1 = keyPair1?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex1 = signature1.hexString
-		XCTAssert(keyPair1?.privateKey.bytes.hexString == "80d4e52897c8e14fbfad4637373de405fa2cc7f27eb9f890db975948b0e7fdb0cd33a22f74d8e04977f74db15a0b1e92d21a59f351e987b9fd462bf6ef2dc253", keyPair1?.privateKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair1?.publicKey.bytes.hexString == "cd33a22f74d8e04977f74db15a0b1e92d21a59f351e987b9fd462bf6ef2dc253", keyPair1?.publicKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair1?.publicKey.publicKeyHash == "tz1T3QZ5w4K11RS3vy4TXiZepraV9R5GzsxG", keyPair1?.publicKey.publicKeyHash ?? "-")
-		XCTAssert(keyPair1?.publicKey.base58CheckRepresentation == "edpkvCbYCa6d6g9hEcK6tvwgsY9jfB4HDzp3jZSBwfuWNSvxE5T5KR", keyPair1?.publicKey.base58CheckRepresentation ?? "-")
-		XCTAssert(keyPair1?.privateKey.base58CheckRepresentation == "edskRtsMi4AkpGSt88FzJXZtMo2HkB7BBcbN77FXgXqR1doC1eSpU7sApWaF7aBq23quKDkcYMU1eSLLXZynxA6n5pmunJaFUB", keyPair1?.privateKey.base58CheckRepresentation ?? "-")
-		XCTAssert(signatureHex1 == "c4d20c77d627d8c07e3f26ddc2e8ab9324471c65f9abd412de70a81c21ddc153dcfad1b31ab777a83c4e8a5dc021ea30d84da107dea4a192fc2ca9da9b3ede00", signatureHex1)
+		XCTAssert(keyPair1?.privateKey.bytes.hexString == "7d85c254fa624f29ae54e981295594212cba5767ebd5f763851d97c55b6a88d65c4da5f73069ef888317361cc035736716683a6bbf417336f1988bd78756e93f", keyPair1?.privateKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair1?.publicKey.bytes.hexString == "5c4da5f73069ef888317361cc035736716683a6bbf417336f1988bd78756e93f", keyPair1?.publicKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair1?.publicKey.publicKeyHash == "tz1Xx4vxaUCkgxfaUhr1EV1kvTE2Rt3BkEdm", keyPair1?.publicKey.publicKeyHash ?? "-")
+		XCTAssert(keyPair1?.publicKey.base58CheckRepresentation == "edpkuLshcvrn2x7c2QtCCMv8XFNEM2gHkPDGb3paKt2hBvnBRfepR4", keyPair1?.publicKey.base58CheckRepresentation ?? "-")
+		XCTAssert(keyPair1?.privateKey.base58CheckRepresentation == "edskRtSFLebJzJif7KX55PMEquDPvYybzRCug2oUfvExABrZKjEdcso2bDGnu2SM47BbWAxsTMsNWCQarrezUWzMjxUxbZLFjn", keyPair1?.privateKey.base58CheckRepresentation ?? "-")
+		XCTAssert(signatureHex1 == "a48c9404671f257f4aa088dad8862a4a39ada8ee88f223e98f67892fc9964c3026be89dbdd57e4a6800dda78f303eba7e5ce19cf3d6934435471682961dcaf0c", signatureHex1)
 		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1, hex: signatureHex1) == true)
 		
 		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
 		let signature2 = keyPair2?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex2 = signature2.hexString
-		XCTAssert(keyPair2?.privateKey.bytes.hexString == "80d4e52897c8e14fbfad4637373de405fa2cc7f27eb9f890db975948b0e7fdb0", keyPair2?.privateKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair2?.publicKey.bytes.hexString == "032460b1fb47abc6b64bfa313efdba92eb4313f58b90ac30b68851b4880cc9c819", keyPair2?.publicKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair2?.publicKey.publicKeyHash == "tz2UiZQJwaVAKxRuYxV8Tx5k8a64gZx1ZwYJ", keyPair2?.publicKey.publicKeyHash ?? "-")
-		XCTAssert(keyPair2?.publicKey.base58CheckRepresentation == "sppk7bXQFZLFWSLusY6gzH9NfbFWT6c61d5vb5zxNZycThMk1qMtPwk", keyPair2?.publicKey.base58CheckRepresentation ?? "-")
-		XCTAssert(keyPair2?.privateKey.base58CheckRepresentation == "spsk2QJWfXvnhrRW7ro8f8o7hr8kmcU8pYkV6pPvJYCNvESTaua8Cc", keyPair2?.privateKey.base58CheckRepresentation ?? "-")
-		XCTAssert(signatureHex2 == "699bc6f9f3ad5987e02b5b2dfccfa86c5583be632bd60840abd5a14c94fb7dea43e39d1f08b8d406a26bf2de337313e8dad054a26b93fec76063e24bde6b8495", signatureHex2)
+		XCTAssert(keyPair2?.privateKey.bytes.hexString == "7d85c254fa624f29ae54e981295594212cba5767ebd5f763851d97c55b6a88d6", keyPair2?.privateKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair2?.publicKey.bytes.hexString == "025b4cb98848c2288eda85a8083d07d595721e89d3694bd3fb2a4c497ceeac66ca", keyPair2?.publicKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair2?.publicKey.publicKeyHash == "tz2HpbGQcmU3UyusJ78Sbqeg9fYteamSMDGo", keyPair2?.publicKey.publicKeyHash ?? "-")
+		XCTAssert(keyPair2?.publicKey.base58CheckRepresentation == "sppk7Zzqz2AjP4yXqr5ys99gZkaPLFKfGKnUxn3u1T1xfNSArZ5CKX6", keyPair2?.publicKey.base58CheckRepresentation ?? "-")
+		XCTAssert(keyPair2?.privateKey.base58CheckRepresentation == "spsk2Nqz6AW1zVwLJ3QgcXhzPNdT3mpRskUKA2UXza5kNRd3NLKrMy", keyPair2?.privateKey.base58CheckRepresentation ?? "-")
+		XCTAssert(signatureHex2 == "2c9f14f18a21867fd2fe3130ad3aaeca7cb1c9421d78d32537173b98b25ed07d054837a878c7e9fe2d237b42c90e5aa2a63a58774833221707cc303a2121b3e7", signatureHex2)
 		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2, hex: signatureHex2) == true)
 		
 		let keyPair3 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase", andSigningCurve: .ed25519)
 		let signature3 = keyPair3?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex3 = signature3.hexString
-		XCTAssert(keyPair3?.privateKey.bytes.hexString == "b17877f6b326bf75e8a5bf2bd7e457a03b103d469c869ef4e3b0473d9b9d50b1482c29dcbfc1f94c185e9d8da1ee7e06b16239a5d4e15a64a6f4150c298ab029", keyPair3?.privateKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair3?.publicKey.bytes.hexString == "482c29dcbfc1f94c185e9d8da1ee7e06b16239a5d4e15a64a6f4150c298ab029", keyPair3?.publicKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair3?.publicKey.publicKeyHash == "tz1hQ4wkVfNAh3eGeaDpoTBmQ9KjX9ZMzc6q", keyPair3?.publicKey.publicKeyHash ?? "-")
-		XCTAssert(keyPair3?.publicKey.base58CheckRepresentation == "edpkuC1VC96abMGC9uhGi8zfAkEM3AH4bd5H6jiHeA9kZXD4gzVKCY", keyPair3?.publicKey.base58CheckRepresentation ?? "-")
-		XCTAssert(keyPair3?.privateKey.base58CheckRepresentation == "edskS1ES45UdtLknPMTYLe6KBjkuevu98jK1QHABNw26syaCNehzSAL57xoErVszznEZZZ37TsZNekeh4y9hW4Wbg9huPFTLoA", keyPair3?.privateKey.base58CheckRepresentation ?? "-")
-		XCTAssert(signatureHex3 == "f83f6075f87269ae141843bda4867942e4f9f7a299289eaed7f2185ad1ad0bb71e5b976e5a3169b32756d5d87a05875d2d3fc3615cc1509ab05c46df8d30b705", signatureHex3)
+		XCTAssert(keyPair3?.privateKey.bytes.hexString == "02484d505196451ebbbde85c4ee3d2089219b51c1767798e4eb63cc9bfb5e62b7b31e1abbe67284d92fc523302f39e46611850e5d3c22d37b577dfcd464cb72d", keyPair3?.privateKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair3?.publicKey.bytes.hexString == "7b31e1abbe67284d92fc523302f39e46611850e5d3c22d37b577dfcd464cb72d", keyPair3?.publicKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair3?.publicKey.publicKeyHash == "tz1ZYoRJ2iouRi5r6CT83Ptp9Bof7RMRkxXe", keyPair3?.publicKey.publicKeyHash ?? "-")
+		XCTAssert(keyPair3?.publicKey.base58CheckRepresentation == "edpkuaUnRZQzwP1QYHFFXzbhN919wg17KHm7vHH86pxxgSSkqT7U4a", keyPair3?.publicKey.base58CheckRepresentation ?? "-")
+		XCTAssert(keyPair3?.privateKey.base58CheckRepresentation == "edskRcK6XU6Bhvjic9daFwgXH3DchwNNDzJCHjvCpB3PKvXdu3dPdBnf5nk1WrSt5zaZiXyrAsLqrgDvGKeP7F7GkZRZTmwo78", keyPair3?.privateKey.base58CheckRepresentation ?? "-")
+		XCTAssert(signatureHex3 == "07d0220bd7bb5b0dff17fb1c26f9e171bc836fe4a90f72646c11a5228e0d25fb4b61b40e0145476c2be2c6220cf8f204a1b9f7d6ba2b6ea77dfa6edd17a66a08", signatureHex3)
 		XCTAssert(keyPair3?.publicKey.verify(message: watermarkedBytes, signature: signature3, hex: signatureHex3) == true)
 		
 		let keyPair4 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase", andSigningCurve: .secp256k1)
 		let signature4 = keyPair4?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex4 = signature4.hexString
-		XCTAssert(keyPair4?.privateKey.bytes.hexString == "b17877f6b326bf75e8a5bf2bd7e457a03b103d469c869ef4e3b0473d9b9d50b1", keyPair4?.privateKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair4?.publicKey.bytes.hexString == "02e37da4dd8966a3f6941e81f72e884e47687a79f2cfe55c903f9acb2c94c8936f", keyPair4?.publicKey.bytes.hexString ?? "-")
-		XCTAssert(keyPair4?.publicKey.publicKeyHash == "tz2J2VKJaVRBwFs96hRiSAqHjJmRmqGirKv8", keyPair4?.publicKey.publicKeyHash ?? "-")
-		XCTAssert(keyPair4?.publicKey.base58CheckRepresentation == "sppk7b2poW37GfMQTbeRpFAKrhisSobBW6Ece49cKJzkDDfaT2maXRy", keyPair4?.publicKey.base58CheckRepresentation ?? "-")
-		XCTAssert(keyPair4?.privateKey.base58CheckRepresentation == "spsk2mivr4XyTkHZ941svcQEJJMn84w6yy3H6NiRFh2QfnHZQmHT4r", keyPair4?.privateKey.base58CheckRepresentation ?? "-")
-		XCTAssert(signatureHex4 == "1f19dd5887c4e739377f1303db66bc12863942bc969ea29055152ddf7f25d32c0e8ff3ea8ac18ab58f328b830debad43e78cbf483dad38441301f59e6af633fa", signatureHex4)
+		XCTAssert(keyPair4?.privateKey.bytes.hexString == "02484d505196451ebbbde85c4ee3d2089219b51c1767798e4eb63cc9bfb5e62b", keyPair4?.privateKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair4?.publicKey.bytes.hexString == "03b27e4b1b124275836f25048afedddddbc41e968a15b0c76176791d3d7ec4d105", keyPair4?.publicKey.bytes.hexString ?? "-")
+		XCTAssert(keyPair4?.publicKey.publicKeyHash == "tz2HDQCEMqJvKpcJvVBh4PnidJUSJepdBcbt", keyPair4?.publicKey.publicKeyHash ?? "-")
+		XCTAssert(keyPair4?.publicKey.base58CheckRepresentation == "sppk7cbzQR4wYsBozfzKvT4vk3GGCss9aoWouvJi6nirhMVZX7JRghQ", keyPair4?.publicKey.base58CheckRepresentation ?? "-")
+		XCTAssert(keyPair4?.privateKey.base58CheckRepresentation == "spsk1SZyy6bEGBzF7DXNnKpcDUmadnonaRKFkYW3WaHjosry7HxGN9", keyPair4?.privateKey.base58CheckRepresentation ?? "-")
+		XCTAssert(signatureHex4 == "2637597234233ccb2b05daba8f1b94d76659ffe6be542abacbc7e1ba6c4a95fe25997b474c617f5c42f792d017ef91a8ca4d2bfa8d971c999d97ab0e6fbe09e3", signatureHex4)
 		XCTAssert(keyPair4?.publicKey.verify(message: watermarkedBytes, signature: signature4, hex: signatureHex4) == true)
 	}
 	

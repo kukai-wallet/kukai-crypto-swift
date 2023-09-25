@@ -11,13 +11,13 @@ import XCTest
 final class MnemonicTests: XCTestCase {
 	
 	func testWords() throws {
-		let mnemonic = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
+		let mnemonic = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		
 		let seed1 = try mnemonic.seed()
-		XCTAssert(seed1.hexString == "80d4e52897c8e14fbfad4637373de405fa2cc7f27eb9f890db975948b0e7fdb0e7540cb3d355291669353a5a261350ac8b8978d6640d388de8a293adcf020b8d", seed1.hexString)
+		XCTAssert(seed1.hexString == "7d85c254fa624f29ae54e981295594212cba5767ebd5f763851d97c55b6a88d6ebf09bf313d6d0efad8d2f30e4cba84a40aa01e20c4abd58003f9c021d0cb0e8", seed1.hexString)
 		
 		let seed2 = try mnemonic.seed(passphrase: "aPassword")
-		XCTAssert(seed2.hexString == "e469380003a26cae690330efddb4f9edfb389ea1d35576324f2a91b5f0e91105e1f9a8cde26f736d45e12547019cb5fd60c92c5353e59d759f40b43a4e06c22c", seed2.hexString)
+		XCTAssert(seed2.hexString == "e2397068b1e5de3bb09cedec6ff52a636a09931b30097e9b3663f2dbcd93acd38a967cd7dc997557f79b407aacf3bbdb038e0188498a81ae38cd660a6f44f95b", seed2.hexString)
 	}
 	
 	func testNumberOfWords() throws {
@@ -58,25 +58,25 @@ final class MnemonicTests: XCTestCase {
 	}
 	
 	func testValid() throws {
-		let mnemonic1 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform")
+		let mnemonic1 = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		XCTAssert(mnemonic1.isValid() == true)
 		
-		let mnemonic2 = try? Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten")
+		let mnemonic2 = try? Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed")
 		XCTAssert(mnemonic2 == nil)
 		
-		let mnemonic3 = try Mnemonic(seedPhrase: "remember smile trip asshole era cube worry fuel bracket eight kitten inform")
+		let mnemonic3 = try Mnemonic(seedPhrase: "kit trigger pledge asshole payment sentence dutch mandate start sense seed venture")
 		XCTAssert(mnemonic3.isValid() == false)
 		
-		let mnemonic4 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform remember smile trip tumble era cube worry fuel bracket eight kitten inform")
+		let mnemonic4 = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		XCTAssert(mnemonic4.isValid() == false)
 		
-		let mnemonic5 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform remember smile trip tumble era cube worry fuel bracket eight kitten infomr")
+		let mnemonic5 = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture kit trigger pledge excess payment sentence dutch mandate start sense seed ventrue")
 		XCTAssert(mnemonic5.isValid() == false)
 		
 		let mnemonic6 = try Mnemonic(seedPhrase: "tell me more about your awesome but totally invalid mnemonic word1 word2")
 		XCTAssert(mnemonic6.isValid() == false)
 		
-		let mnemonic7 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten remember")
+		let mnemonic7 = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed kit")
 		XCTAssert(mnemonic7.isValid() == false)
 	}
 }
