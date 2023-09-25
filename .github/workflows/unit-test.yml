@@ -25,6 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: "swift"
+
       - uses: mxcl/xcodebuild@v1.9.2
         with:
           platform: ${{ matrix.platform }}
@@ -33,3 +38,8 @@ jobs:
           scheme: KukaiCryptoSwift
           code-coverage: true
           upload-logs: always
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: "/language:swift"
