@@ -3,6 +3,7 @@
 
 import Foundation
 import CommonCrypto
+import CryptoKit
 
 public enum MnemonicError: Swift.Error {
 	case seedDerivationFailed
@@ -123,6 +124,41 @@ public struct Mnemonic: Equatable, Codable {
 	}
 	
 	/**
+	 Derive the checksum portion of an array of bits
+	 */
+	public static func deriveChecksumBits(_ bytes: [UInt8]) -> String {
+		let ENT = bytes.count * 8;
+		let CS = ENT / 32
+		
+		let hash = SHA256.hash(data: bytes)
+		let hashbits = String(hash.flatMap { ("00000000" + String($0, radix:2)).suffix(8) })
+		return String(hashbits.prefix(CS))
+	}
+	
+	/**
+	 Verify the chechsum of the supplied words to esnure its a valid phrase
+	 */
+	public static func isValidChecksum(phrase: [String], wordlist: WordList = WordList.english) -> Bool {
+		let wordL = wordlist.words
+		var bits = ""
+		for word in phrase {
+			guard let i = wordL.firstIndex(of: word) else { return false }
+			bits += ("00000000000" + String(i, radix: 2)).suffix(11)
+		}
+		
+		let dividerIndex = bits.count / 33 * 32
+		let entropyBits = String(bits.prefix(dividerIndex))
+		let checksumBits = String(bits.suffix(bits.count - dividerIndex))
+		
+		let regex = try! NSRegularExpression(pattern: "[01]{1,8}", options: .caseInsensitive)
+		let entropyBytes = regex.matches(in: entropyBits, options: [], range: NSRange(location: 0, length: entropyBits.count)).map {
+			UInt8(strtoul(String(entropyBits[Range($0.range, in: entropyBits)!]), nil, 2))
+		}
+		
+		return checksumBits == deriveChecksumBits(entropyBytes)
+	}
+	
+	/**
 	 Check a mnemonic is of the correct length, and is made up of valid BIP39 words
 	 */
 	public func isValid(in vocabulary: WordList = .english) -> Bool {
@@ -140,6 +176,6 @@ public struct Mnemonic: Equatable, Codable {
 			}
 		}
 		
-		return true
+		return Mnemonic.isValidChecksum(phrase: words, wordlist: vocabulary)
 	}
 }

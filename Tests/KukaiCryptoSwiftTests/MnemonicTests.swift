@@ -68,12 +68,15 @@ final class MnemonicTests: XCTestCase {
 		XCTAssert(mnemonic3.isValid() == false)
 		
 		let mnemonic4 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform remember smile trip tumble era cube worry fuel bracket eight kitten inform")
-		XCTAssert(mnemonic4.isValid() == true)
+		XCTAssert(mnemonic4.isValid() == false)
 		
 		let mnemonic5 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten inform remember smile trip tumble era cube worry fuel bracket eight kitten infomr")
 		XCTAssert(mnemonic5.isValid() == false)
 		
 		let mnemonic6 = try Mnemonic(seedPhrase: "tell me more about your awesome but totally invalid mnemonic word1 word2")
 		XCTAssert(mnemonic6.isValid() == false)
+		
+		let mnemonic7 = try Mnemonic(seedPhrase: "remember smile trip tumble era cube worry fuel bracket eight kitten remember")
+		XCTAssert(mnemonic7.isValid() == false)
 	}
 }
