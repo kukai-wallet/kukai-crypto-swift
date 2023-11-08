@@ -155,4 +155,25 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(dataString2.count == 0, dataString2.count.description)
 		XCTAssert(dataString2 == "", dataString2)
 	}
+	
+	func testSafetyChecks() throws {
+		let messageToSign = "something very interesting that needs to be signed".bytes
+		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
+		let mnemonic = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
+		
+		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
+		var signatureBytes = keyPair1?.privateKey.sign(bytes: watermarkedBytes) ?? []
+		signatureBytes.append(contentsOf: signatureBytes)
+		let signature1 = signatureBytes
+		let signatureHex1 = signature1.hexString + signature1.hexString
+		
+		
+		// Test function doesn't crash with more than 64 byte signature
+		XCTAssert(signatureBytes.count > 64)
+		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1, hex: signatureHex1) == true)
+		
+		// Test doesn't crash with empty
+		XCTAssert(keyPair1?.publicKey.verify(message: [], signature: [], hex: "") == false)
+		
+	}
 }

@@ -97,8 +97,10 @@ public struct PublicKey: Codable {
 				
 				var cSignature = secp256k1_ecdsa_signature()
 				var publicKey = secp256k1_pubkey()
-				secp256k1_ecdsa_signature_parse_compact(context, &cSignature, signature)
-				_ = secp256k1_ec_pubkey_parse(context, &publicKey, self.bytes, self.bytes.count)
+				guard secp256k1_ecdsa_signature_parse_compact(context, &cSignature, signature) != 0,
+					  secp256k1_ec_pubkey_parse(context, &publicKey, self.bytes, self.bytes.count) != 0 else {
+					return false
+				}
 				
 				return secp256k1_ecdsa_verify(context, &cSignature, message, &publicKey) == 1
 		}
