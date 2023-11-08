@@ -128,6 +128,10 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(EllipticalCurve.fromAddress("tz2abc123") == .secp256k1)
 		XCTAssert(EllipticalCurve.fromAddress("tZ1abc123") == .ed25519)
 		XCTAssert(EllipticalCurve.fromAddress("tZ2abc123") == .secp256k1)
+		
+		XCTAssert(EllipticalCurve.fromAddress("tz3abc123") == nil)
+		XCTAssert(EllipticalCurve.fromAddress("tz4abc123") == nil)
+		XCTAssert(EllipticalCurve.fromAddress("kt1abc123") == nil)
 	}
 	
 	func testUncompress() throws {

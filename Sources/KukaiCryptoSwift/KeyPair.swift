@@ -15,11 +15,12 @@ public enum EllipticalCurve: String, Codable {
 	case ed25519
 	case secp256k1
 	
-	public static func fromAddress(_ address: String) -> EllipticalCurve {
+	public static func fromAddress(_ address: String) -> EllipticalCurve? {
 		let prefix = address.lowercased().prefix(3)
 		
 		if prefix == "tz1" { return .ed25519 }
-		else { return .secp256k1 }
+		else if prefix == "tz2" { return .secp256k1 }
+		else { return nil }
 	}
 }
 
