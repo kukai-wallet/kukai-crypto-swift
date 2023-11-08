@@ -144,15 +144,18 @@ public struct KeyPair {
 		var outputLength = 33
 		var publicKeyBytes = [UInt8](repeating: 0, count: outputLength)
 		
-		guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)),
-			  secp256k1_ec_pubkey_create(context, &publicKey, pkBytes) != 0,
-			  secp256k1_ec_pubkey_serialize(context, &publicKeyBytes, &outputLength, &publicKey, UInt32(SECP256K1_EC_COMPRESSED)) != 0
-		else {
+		guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)) else {
 			return nil
 		}
 		
 		defer {
 			secp256k1_context_destroy(context)
+		}
+		
+		guard secp256k1_ec_pubkey_create(context, &publicKey, pkBytes) != 0,
+			  secp256k1_ec_pubkey_serialize(context, &publicKeyBytes, &outputLength, &publicKey, UInt32(SECP256K1_EC_COMPRESSED)) != 0
+		else {
+			return nil
 		}
 		
 		return PublicKey(publicKeyBytes, signingCurve: .secp256k1)
@@ -164,14 +167,17 @@ public struct KeyPair {
 		var outputLength = 65
 		var outputBytes = [UInt8](repeating: 0, count: outputLength)
 		
-		guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)),
-			  secp256k1_ec_pubkey_parse(context, &publicKey, fromBytes, fromBytes.count) != 0,
-			  secp256k1_ec_pubkey_serialize(context, &outputBytes, &outputLength, &publicKey, UInt32(SECP256K1_EC_UNCOMPRESSED)) != 0 else {
+		guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)) else {
 			return []
 		}
 		
 		defer {
 			secp256k1_context_destroy(context)
+		}
+		
+		guard secp256k1_ec_pubkey_parse(context, &publicKey, fromBytes, fromBytes.count) != 0,
+			  secp256k1_ec_pubkey_serialize(context, &outputBytes, &outputLength, &publicKey, UInt32(SECP256K1_EC_UNCOMPRESSED)) != 0 else {
+			return []
 		}
 		
 		return outputBytes

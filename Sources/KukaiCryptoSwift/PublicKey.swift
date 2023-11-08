@@ -87,17 +87,20 @@ public struct PublicKey: Codable {
 				return Sodium.shared.sign.verify(message: message, publicKey: self.bytes, signature: signature)
 				
 			case .secp256k1:
-				let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY))
+				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY)) else {
+					return false
+				}
+				
 				defer {
 					secp256k1_context_destroy(context)
 				}
 				
 				var cSignature = secp256k1_ecdsa_signature()
 				var publicKey = secp256k1_pubkey()
-				secp256k1_ecdsa_signature_parse_compact(context!, &cSignature, signature)
-				_ = secp256k1_ec_pubkey_parse(context!, &publicKey, self.bytes, self.bytes.count)
+				secp256k1_ecdsa_signature_parse_compact(context, &cSignature, signature)
+				_ = secp256k1_ec_pubkey_parse(context, &publicKey, self.bytes, self.bytes.count)
 				
-				return secp256k1_ecdsa_verify(context!, &cSignature, message, &publicKey) == 1
+				return secp256k1_ecdsa_verify(context, &cSignature, message, &publicKey) == 1
 		}
 	}
 }
