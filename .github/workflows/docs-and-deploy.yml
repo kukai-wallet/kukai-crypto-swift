@@ -11,12 +11,32 @@ jobs:
       - uses: actions/checkout@v4.1.1
         with:
           ref: main
+      
+      - name: Install Jazzy
+        run: gem install jazzy
+  
+      - name: Run Jazzy docs
+        run: jazzy --root-url https://kukai-crypto-swift.kukai.app/ --output Documentation
+      
+      - name: Update Permissions
+        run: 'sudo chown --recursive $USER Documentation'
 
-      - name: Publish Jazzy Docs
-        uses: steven0351/publish-jazzy-docs@v1
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          personal_access_token: ${{ secrets.JAZZY_DOCS }}
-          args: "--root-url https://kukai-crypto-swift.kukai.app/"
+          branch: gh-pages
+          folder: Documentation
+
+
+
+
+
+
+      #- name: Publish Jazzy Docs
+      #  uses: steven0351/publish-jazzy-docs@v1
+      #  with:
+      #    personal_access_token: ${{ secrets.JAZZY_DOCS }}
+      #    args: "--root-url https://kukai-crypto-swift.kukai.app/"
       
       #- name: Swift Doc
       #  uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
