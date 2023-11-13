@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v4.1.1
         with:
           ref: main
       
@@ -24,9 +24,8 @@ jobs:
       - name: Documentation
         uses: sersoft-gmbh/swifty-docs-action@v3
         with:
-          use-xcodebuild: true
           output: Documentation
-          hosting-base-path: https://kukai-crypto-swift.kukai.app/
+          hosting-base-path: "https://kukai-crypto-swift.kukai.app/"
 
 
       - name: Update Permissions
