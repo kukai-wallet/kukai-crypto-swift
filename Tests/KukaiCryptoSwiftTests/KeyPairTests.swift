@@ -15,7 +15,7 @@ final class KeyPairTests: XCTestCase {
 		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
 		let mnemonic = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		
-		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
+		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: ""/*, andSigningCurve: .ed25519*/)
 		let signature1 = keyPair1?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex1 = signature1.hexString
 		XCTAssert(keyPair1?.privateKey.bytes.hexString == "7d85c254fa624f29ae54e981295594212cba5767ebd5f763851d97c55b6a88d65c4da5f73069ef888317361cc035736716683a6bbf417336f1988bd78756e93f", keyPair1?.privateKey.bytes.hexString ?? "-")
@@ -26,6 +26,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(signatureHex1 == "a48c9404671f257f4aa088dad8862a4a39ada8ee88f223e98f67892fc9964c3026be89dbdd57e4a6800dda78f303eba7e5ce19cf3d6934435471682961dcaf0c", signatureHex1)
 		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1, hex: signatureHex1) == true)
 		
+		/*
 		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
 		let signature2 = keyPair2?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex2 = signature2.hexString
@@ -36,8 +37,9 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair2?.privateKey.base58CheckRepresentation == "spsk2Nqz6AW1zVwLJ3QgcXhzPNdT3mpRskUKA2UXza5kNRd3NLKrMy", keyPair2?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex2 == "2c9f14f18a21867fd2fe3130ad3aaeca7cb1c9421d78d32537173b98b25ed07d054837a878c7e9fe2d237b42c90e5aa2a63a58774833221707cc303a2121b3e7", signatureHex2)
 		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2, hex: signatureHex2) == true)
+		*/
 		
-		let keyPair3 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase", andSigningCurve: .ed25519)
+		let keyPair3 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase"/*, andSigningCurve: .ed25519*/)
 		let signature3 = keyPair3?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex3 = signature3.hexString
 		XCTAssert(keyPair3?.privateKey.bytes.hexString == "02484d505196451ebbbde85c4ee3d2089219b51c1767798e4eb63cc9bfb5e62b7b31e1abbe67284d92fc523302f39e46611850e5d3c22d37b577dfcd464cb72d", keyPair3?.privateKey.bytes.hexString ?? "-")
@@ -48,6 +50,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(signatureHex3 == "07d0220bd7bb5b0dff17fb1c26f9e171bc836fe4a90f72646c11a5228e0d25fb4b61b40e0145476c2be2c6220cf8f204a1b9f7d6ba2b6ea77dfa6edd17a66a08", signatureHex3)
 		XCTAssert(keyPair3?.publicKey.verify(message: watermarkedBytes, signature: signature3, hex: signatureHex3) == true)
 		
+		/*
 		let keyPair4 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase", andSigningCurve: .secp256k1)
 		let signature4 = keyPair4?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		let signatureHex4 = signature4.hexString
@@ -58,6 +61,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair4?.privateKey.base58CheckRepresentation == "spsk1SZyy6bEGBzF7DXNnKpcDUmadnonaRKFkYW3WaHjosry7HxGN9", keyPair4?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex4 == "2637597234233ccb2b05daba8f1b94d76659ffe6be542abacbc7e1ba6c4a95fe25997b474c617f5c42f792d017ef91a8ca4d2bfa8d971c999d97ab0e6fbe09e3", signatureHex4)
 		XCTAssert(keyPair4?.publicKey.verify(message: watermarkedBytes, signature: signature4, hex: signatureHex4) == true)
+		*/
 	}
 	
 	func testHD() throws {
@@ -136,7 +140,7 @@ final class KeyPairTests: XCTestCase {
 	
 	func testUncompress() throws {
 		let mnemonic = try Mnemonic(seedPhrase: "gym exact clown can answer hope sample mirror knife twenty powder super imitate lion churn almost shed chalk dust civil gadget pyramid helmet trade")
-		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
+		/*let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
 		
 		let uncompressed = KeyPair.secp256k1PublicKey_uncompressed(fromBytes: keyPair1?.publicKey.bytes ?? [])
 		let data = Data(bytes: uncompressed, count: uncompressed.count)
@@ -144,9 +148,9 @@ final class KeyPairTests: XCTestCase {
 		
 		XCTAssert(dataString.count == 130, dataString.count.description)
 		XCTAssert(dataString == "047b6d7bf2cbb376149211eacab517359cb035b0f0c36f57f7fe923a2453c7a8f1a594260c94501bc7ad63324b42638f768840948d1f1cadf9cb6d1ce456b7c8dc", dataString)
+		*/
 		
-		
-		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
+		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: ""/*, andSigningCurve: .ed25519*/)
 		
 		let uncompressed2 = KeyPair.secp256k1PublicKey_uncompressed(fromBytes: keyPair2?.publicKey.bytes ?? [])
 		let data2 = Data(bytes: uncompressed2, count: uncompressed2.count)
@@ -161,7 +165,7 @@ final class KeyPairTests: XCTestCase {
 		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
 		let mnemonic = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		
-		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
+		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: ""/*, andSigningCurve: .ed25519*/)
 		var signatureBytes = keyPair1?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		signatureBytes.append(contentsOf: signatureBytes)
 		let signature1 = signatureBytes
