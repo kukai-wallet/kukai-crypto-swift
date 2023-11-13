@@ -19,6 +19,9 @@ let package = Package(
 		.package(url: "https://github.com/jedisct1/swift-sodium", from: "0.9.1"),
 		.package(url: "https://github.com/Boilertalk/secp256k1.swift", from: "0.1.7"),
 		.package(url: "https://github.com/attaswift/BigInt.git", from: "5.3.0"),
+		
+		// Documentation plugin, only needed for github action
+		.package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0")
 	],
     targets: [
         .target(
