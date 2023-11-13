@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mnemonic Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Mnemonic" class="dashAnchor"></a>
+    <a title="Mnemonic Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fkukai-crypto-swift.kukai.app%2Fdocsets%2F.xml"><img src="../img/dash.png" alt="Dash"/>Install in Dash</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        Mnemonic Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:16KukaiCryptoSwift24MnemonicWordList_ChineseSaySSGvp">MnemonicWordList_Chinese</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:16KukaiCryptoSwift24MnemonicWordList_EnglishSaySSGvp">MnemonicWordList_English</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ByteHexEncodingErrors.html">ByteHexEncodingErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/EllipticalCurve.html">EllipticalCurve</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/EntropyGeneratorError.html">EntropyGeneratorError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MnemonicError.html">MnemonicError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix.html">Prefix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix/Watermark.html">– Watermark</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RandomBytesError.html">RandomBytesError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WordList.html">WordList</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DataProtocol.html">DataProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Sodium.html">Sodium</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html#/s:Sl11SubSequenceQa">– SubSequence</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/EntropyGenerator.html">EntropyGenerator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Base58.html">Base58</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Base58Check.html">Base58Check</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HD.html">HD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HD/HDError.html">– HDError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HD.html#/s:16KukaiCryptoSwift2HDV4NodeV">– Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/KeyPair.html">KeyPair</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mnemonic.html">Mnemonic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mnemonic/NumberOfWords.html">– NumberOfWords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PrivateKey.html">PrivateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PublicKey.html">PublicKey</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Mnemonic</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Mnemonic</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+
+                </div>
+              </div>
+            <p>A list of words which can generate a private key.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV13NumberOfWordsO"></a>
+                    <a name="//apple_ref/swift/Enum/NumberOfWords" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV13NumberOfWordsO">NumberOfWords</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Helper enum used to choose the number of words for a mnemonic</p>
+
+                        <a href="../Structs/Mnemonic/NumberOfWords.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">NumberOfWords</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV6phraseSSvp"></a>
+                    <a name="//apple_ref/swift/Property/phrase" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV6phraseSSvp">phrase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The list of words as a single sentence.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">phrase</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV5wordsSaySSGvp"></a>
+                    <a name="//apple_ref/swift/Property/words" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV5wordsSaySSGvp">words</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The list of words.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">words</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV10seedPhraseACSSSg_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(seedPhrase:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV10seedPhraseACSSSg_tKcfc">init(seedPhrase:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">seedPhrase</span> <span class="nv">phrase</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV8strength2inACSi_AA8WordListOtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(strength:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV8strength2inACSi_AA8WordListOtKcfc">init(strength:<wbr>in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">strength</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">.</span><span class="n">strongest</span><span class="p">,</span> <span class="k">in</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV13numberOfWords2inA2C06NumberfG0O_AA8WordListOtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(numberOfWords:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV13numberOfWords2inA2C06NumberfG0O_AA8WordListOtKcfc">init(numberOfWords:<wbr>in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">numberOfWords</span><span class="p">:</span> <span class="kt"><a href="../Structs/Mnemonic/NumberOfWords.html">NumberOfWords</a></span><span class="p">,</span> <span class="k">in</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV7entropy2inACx_AA8WordListOtKcAA16EntropyGeneratorRzlufc"></a>
+                    <a name="//apple_ref/swift/Method/init(entropy:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV7entropy2inACx_AA8WordListOtKcAA16EntropyGeneratorRzlufc">init(entropy:<wbr>in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a mnemonic from a pre-computed <code>entropy</code>, with phrase_ pulled from
+ the <code>vocabulary</code> list.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Entropy</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">entropy</span><span class="p">:</span> <span class="kt">Entropy</span><span class="p">,</span> <span class="k">in</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="k">throws</span> <span class="k">where</span> <span class="kt">Entropy</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/EntropyGenerator.html">EntropyGenerator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV4seed10passphrase10Foundation4DataVSS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/seed(passphrase:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV4seed10passphrase10Foundation4DataVSS_tKF">seed(passphrase:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create the mnemonic&rsquo;s private key (seed).</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Calling this function can take some time. Avoid calling
+        this function from the main thread, when possible.
+
+</div>
+
+<p><strong>BIP39</strong>:</p>
+
+<p><a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki#from-mnemonic-to-seed">https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki#from-mnemonic-to-seed</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">seed</span><span class="p">(</span><span class="nv">passphrase</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <em>result</em> with the seed&rsquo;s bytes, or an <code>Error</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV5scrubyyF"></a>
+                    <a name="//apple_ref/swift/Method/scrub()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV5scrubyyF">scrub()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Scrub the phrase from memory by replacing with 0&rsquo;s</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">scrub</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV18deriveChecksumBitsySSSays5UInt8VGFZ"></a>
+                    <a name="//apple_ref/swift/Method/deriveChecksumBits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV18deriveChecksumBitsySSSays5UInt8VGFZ">deriveChecksumBits(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Derive the checksum portion of an array of bits</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">deriveChecksumBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">bytes</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV15isValidChecksum6phrase8wordlistSbSaySSG_AA8WordListOtFZ"></a>
+                    <a name="//apple_ref/swift/Method/isValidChecksum(phrase:wordlist:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV15isValidChecksum6phrase8wordlistSbSaySSG_AA8WordListOtFZ">isValidChecksum(phrase:<wbr>wordlist:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Verify the chechsum of the supplied words to esnure its a valid phrase</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">isValidChecksum</span><span class="p">(</span><span class="nv">phrase</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">],</span> <span class="nv">wordlist</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span><span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV7isValid2inSbAA8WordListO_tF"></a>
+                    <a name="//apple_ref/swift/Method/isValid(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV7isValid2inSbAA8WordListO_tF">isValid(in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check a mnemonic is of the correct length, and is made up of valid BIP39 words</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isValid</span><span class="p">(</span><span class="k">in</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-11-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Base58Check Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Base58Check" class="dashAnchor"></a>
+    <a title="Base58Check Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fkukai-crypto-swift.kukai.app%2Fdocsets%2F.xml"><img src="../img/dash.png" alt="Dash"/>Install in Dash</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        Base58Check Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:16KukaiCryptoSwift24MnemonicWordList_ChineseSaySSGvp">MnemonicWordList_Chinese</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:16KukaiCryptoSwift24MnemonicWordList_EnglishSaySSGvp">MnemonicWordList_English</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ByteHexEncodingErrors.html">ByteHexEncodingErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/EllipticalCurve.html">EllipticalCurve</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/EntropyGeneratorError.html">EntropyGeneratorError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MnemonicError.html">MnemonicError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix.html">Prefix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix/Watermark.html">– Watermark</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Prefix/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RandomBytesError.html">RandomBytesError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WordList.html">WordList</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DataProtocol.html">DataProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Sodium.html">Sodium</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html#/s:Sl11SubSequenceQa">– SubSequence</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/EntropyGenerator.html">EntropyGenerator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Base58.html">Base58</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Base58Check.html">Base58Check</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HD.html">HD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HD/HDError.html">– HDError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HD.html#/s:16KukaiCryptoSwift2HDV4NodeV">– Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/KeyPair.html">KeyPair</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mnemonic.html">Mnemonic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mnemonic/NumberOfWords.html">– NumberOfWords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PrivateKey.html">PrivateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PublicKey.html">PublicKey</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Base58Check</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base58Check</span></code></pre>
+
+                </div>
+              </div>
+            <p>A set of Base58Check coding methods.</p>
+<pre class="highlight swift"><code><span class="c1">// Encode bytes to address</span>
+<span class="k">let</span> <span class="nv">address</span> <span class="o">=</span> <span class="kt">Base58Check</span><span class="o">.</span><span class="nf">encode</span><span class="p">([</span><span class="n">versionByte</span><span class="p">]</span> <span class="o">+</span> <span class="n">pubkeyHash</span><span class="p">)</span>
+
+<span class="c1">// Decode address to bytes</span>
+<span class="k">guard</span> <span class="k">let</span> <span class="nv">payload</span> <span class="o">=</span> <span class="kt">Base58Check</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Invalid checksum or Base58 coding</span>
+    <span class="k">throw</span> <span class="kt">SomeError</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="k">let</span> <span class="nv">versionByte</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">pubkeyHash</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="nf">dropFirst</span><span class="p">()</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift11Base58CheckV6encodeySS10Foundation4DataVFZ"></a>
+                    <a name="//apple_ref/swift/Method/encode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift11Base58CheckV6encodeySS10Foundation4DataVFZ">encode(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encodes the data to Base58Check encoded string</p>
+
+<p>Puts checksum bytes to the original data and then, encode the combined
+data to Base58 string.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">address</span> <span class="o">=</span> <span class="kt">Base58Check</span><span class="o">.</span><span class="nf">encode</span><span class="p">([</span><span class="n">versionByte</span><span class="p">]</span> <span class="o">+</span> <span class="n">pubkeyHash</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">_</span> <span class="nv">payload</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift11Base58CheckV6decodey10Foundation4DataVSgSSFZ"></a>
+                    <a name="//apple_ref/swift/Method/decode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift11Base58CheckV6decodey10Foundation4DataVSgSSFZ">decode(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Decode the Base58 encoded String value to original payload</p>
+
+<p>First validate if checksum bytes are the first 4 bytes of the sha256(sha256(payload)).
+If it&rsquo;s valid, returns the original payload.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">payload</span> <span class="o">=</span> <span class="kt">Base58Check</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">base58checkText</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift11Base58CheckV6encode7message6prefixSSSays5UInt8VG_AItFZ"></a>
+                    <a name="//apple_ref/swift/Method/encode(message:prefix:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift11Base58CheckV6encode7message6prefixSSSays5UInt8VG_AItFZ">encode(message:<wbr>prefix:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Base58 encode an array of bytes and add the supplied prefix</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">],</span> <span class="nv">prefix</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift11Base58CheckV6decode6string6prefixSays5UInt8VGSgSS_AItFZ"></a>
+                    <a name="//apple_ref/swift/Method/decode(string:prefix:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift11Base58CheckV6decode6string6prefixSays5UInt8VGSgSS_AItFZ">decode(string:<wbr>prefix:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Base58 decode a message, removing the supplied prefix</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">prefix</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift11Base58CheckV6encode7message15ellipticalCurveSSSays5UInt8VG_AA010EllipticalI0OtFZ"></a>
+                    <a name="//apple_ref/swift/Method/encode(message:ellipticalCurve:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift11Base58CheckV6encode7message15ellipticalCurveSSSays5UInt8VG_AA010EllipticalI0OtFZ">encode(message:<wbr>ellipticalCurve:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Base58 encode an array of bytes and add the appropriate prefix base on the ellipticalCurve</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">],</span> <span class="nv">ellipticalCurve</span><span class="p">:</span> <span class="kt"><a href="../Enums/EllipticalCurve.html">EllipticalCurve</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-11-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

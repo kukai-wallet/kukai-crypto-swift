@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>  Reference</title>
+    <title>Protocols  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,7 +13,8 @@
     <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a title="  Reference"></a>
+    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
+    <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html"> Docs</a> (100% documented)</p>
@@ -29,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="index.html"> Reference</a>
         <img id="carat" src="img/carat.png" alt=""/>
-          Reference
+        Protocols  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -155,82 +156,43 @@
       <article class="main-content">
         <section>
           <section class="section">
-            
-            <h1 id='kukai-crypto-swift' class='heading'>Kukai Crypto Swift</h1>
+            <h1>Protocols</h1>
+            <p>The following protocols are available globally.</p>
 
-<p><a href="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS-blue"><img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS-blue" alt="Platforms"></a>
-<a href="https://img.shields.io/badge/Swift_Package_Manager-compatible-orange"><img src="https://img.shields.io/badge/Swift_Package_Manager-compatible-orange" alt="Swift Package Manager"></a>
-<a href="https://github.com/kukai-wallet/kukai-crypto-swift/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a></p>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift16EntropyGeneratorP"></a>
+                    <a name="//apple_ref/swift/Protocol/EntropyGenerator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift16EntropyGeneratorP">EntropyGenerator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adopters can generate entropy; a random set of bytes.</p>
 
-<p>Kukai Crypto Swift is a native Swift library for creating regular and HD key pairs for the Tezos blockchain. Supporting both TZ1 (Ed25519) and TZ2 (secp256k1) for regular pairs, and TZ1 (Ed25519 (<a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a> via <a href="https://github.com/satoshilabs/slips/blob/master/slip-0010.md">SLIP-0010</a>)) for HD pairs.</p>
+                        <a href="Protocols/EntropyGenerator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">EntropyGenerator</span></code></pre>
 
-<p><br/>
-Feature set includes:</p>
-
-<ul>
-<li>Create <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP39</a> mnemonics in English or Chinese</li>
-<li>Generate a cryptographic seed from a Menmonic in a tiny fraction of a second</li>
-<li>Create TZ1 or TZ2 key pair from a seed</li>
-<li>Derive HD key pair from a seed and derivation path</li>
-<li>Support for optional passwords</li>
-</ul>
-
-<p><br/>
-Based off:</p>
-
-<ul>
-<li><a href="https://github.com/tezos-commons/tezos-core-tools/blob/master/packages/crypto-utils/src/hd.ts">tezos-core-tools</a></li>
-<li><a href="https://github.com/KevinVitale/WalletKit">WalletKit</a></li>
-<li><a href="https://github.com/keefertaylor/TezosKit">TezosKit</a></li>
-</ul>
-
-<p><br/>
-<br/></p>
-<h1 id='install' class='heading'>Install</h1>
-
-<p>Kukai Crypto Swift supports the Swift Package Manager. Either use the Xcode editor to add to your project by clicking <code>File</code> -&gt; <code>Swift Packages</code> -&gt; <code>Add Package Dependency</code>, search for the git repo <code>https://github.com/kukai-wallet/kukai-crypto-swift.git</code> and choose from version <code>1.0.0</code>.</p>
-
-<p>Or add it to your <code>Package.swift</code> dependencies like so:</p>
-<pre class="highlight plaintext"><code>dependencies: [
-    .package(url: "https://github.com/kukai-wallet/kukai-crypto-swift", from: "1.0.0")
-]
-</code></pre>
-
-<p><br/>
-<br/></p>
-<h1 id='how-to-use' class='heading'>How to use</h1>
-<h3 id='create-a-new-mnemonic' class='heading'>Create a new Mnemonic</h3>
-<pre class="highlight plaintext"><code>let mnemonic = try Mnemonic(numberOfWords: .twentyFour)
-</code></pre>
-<h3 id='create-a-mnemonic-from-an-existing-phrase' class='heading'>Create a Mnemonic from an existing phrase</h3>
-<pre class="highlight plaintext"><code>let mnemonic = try Mnemonic(seedPhrase: "word1 word2 word3 ...")
-</code></pre>
-<h3 id='create-a-regular-key-pair-and-get-a-tezos-address' class='heading'>Create a regular key pair and get a Tezos address</h3>
-<pre class="highlight plaintext"><code>let keyPair = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .ed25519)
-
-print(keyPair.publicKey.publicKeyHash) // tz1Abc123...
-</code></pre>
-<pre class="highlight plaintext"><code>let keyPair = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "", andSigningCurve: .secp256k1)
-
-print(keyPair.publicKey.publicKeyHash) // tz2def456...
-
-</code></pre>
-<h3 id='create-a-hd-key-pair' class='heading'>Create a HD key pair</h3>
-<pre class="highlight plaintext"><code>let keyPair = KeyPair.hd(fromMnemonic: mnemonic, passphrase: "", andDerivationPath: "44'/1729'/0'/0'")
-</code></pre>
-<h3 id='sign-a-message' class='heading'>Sign a message</h3>
-<pre class="highlight plaintext"><code>let messageToSign = "something very interesting that needs to be signed".bytes
-let result = keyPair.privateKey.sign(bytes: messageToSign)
-
-print("Result hex: \(result.hexString)") // c4d20c77d627d8c07e....
-</code></pre>
-
-<p><br/>
-<br/></p>
-<h1 id='documentation' class='heading'>Documentation</h1>
-
-<p>Compiled Swift Doc&rsquo;s can be found <a href="https://kukai-crypto-swift.kukai.app/">here</a></p>
-
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
