@@ -24,9 +24,8 @@ jobs:
       - name: Documentation
         uses: sersoft-gmbh/swifty-docs-action@v3
         with:
-          package-path: $PWD
           output: Documentation
-          hosting-base-path: "https://kukai-crypto-swift.kukai.app/"
+          #hosting-base-path: "https://kukai-crypto-swift.kukai.app/"
 
 
       - name: Update Permissions
