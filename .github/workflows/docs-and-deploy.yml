@@ -11,6 +11,12 @@ jobs:
       - uses: actions/checkout@v4.1.1
         with:
           ref: main
+
+      - name: Publish Jazzy Docs
+        uses: steven0351/publish-jazzy-docs@v1
+        with:
+          personal_access_token: ${{ secrets.JAZZY_DOCS }}
+          args: "--root-url https://kukai-crypto-swift.kukai.app/"
       
       #- name: Swift Doc
       #  uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
@@ -20,19 +26,20 @@ jobs:
       #    format: "html"
       #    output: "Documentation"
       #    base-url: "https://kukai-crypto-swift.kukai.app/"
+      
 
-      - name: Documentation
-        uses: sersoft-gmbh/swifty-docs-action@v3
-        with:
-          use-xcodebuild: true
-          output: Documentation
-          hosting-base-path: "https://kukai-crypto-swift.kukai.app/"
+      #- name: Documentation
+      #  uses: sersoft-gmbh/swifty-docs-action@v3
+      #  with:
+      #    use-xcodebuild: true
+      #    output: Documentation
+      #    hosting-base-path: "https://kukai-crypto-swift.kukai.app/"
 
 
-      - name: Update Permissions
-        run: 'sudo chown --recursive $USER Documentation'
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: Documentation
+      #- name: Update Permissions
+      #  run: 'sudo chown --recursive $USER Documentation'
+      #- name: Deploy to GitHub Pages
+      #  uses: JamesIves/github-pages-deploy-action@4.1.4
+      #  with:
+      #    branch: gh-pages
+      #    folder: Documentation
