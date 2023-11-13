@@ -38,12 +38,11 @@ public struct KeyPair {
 	// MARK: - Public Helpers
 	
 	/**
-	 Create a regular (non HD) `KeyPair` from a hex seed string and optional `EllipticalCurve` (defaults to `.ed25519`, which returtns a TZ1 address)
+	 Create a regular (non HD) `KeyPair` from a hex seed string
 	 - parameter seedString: A hex string representing a cryptographic seed (can be created from `Mnemonic`)
-	 - parameter signingCurve: The `EllipticalCurve` to use to create the keys
 	 - Returns: A `KeyPair` instance, if able, nil otherwise
 	 */
-	public static func regular(fromSeedString seedString: String/*, andSigningCurve signingCurve: EllipticalCurve = .ed25519*/) -> KeyPair? {
+	public static func regular(fromSeedString seedString: String) -> KeyPair? {
 		var shortenedSeed = seedString
 		if seedString.count > 64 {
 			shortenedSeed = String(seedString[..<seedString.index(seedString.startIndex, offsetBy: 64)])
@@ -56,33 +55,18 @@ public struct KeyPair {
 		let secretKeyBytes = keyPair.secretKey
 		let publicKeyBytes = keyPair.publicKey
 		
-		//switch signingCurve {
-			//case .ed25519:
 		return KeyPair(privateKey: PrivateKey(secretKeyBytes, signingCurve: .ed25519), publicKey: PublicKey(publicKeyBytes, signingCurve: .ed25519))
-			/*
-			case .secp256k1:
-				let privateKeyBytes = Array(secretKeyBytes[..<32])
-				let privateKey = PrivateKey(privateKeyBytes, signingCurve: signingCurve)
-				
-				guard let publicKey = secp256k1PublicKey(fromPrivateKeyBytes: privateKeyBytes) else {
-					return nil
-				}
-				
-				return KeyPair(privateKey: privateKey, publicKey: publicKey)
-			*/
-		//}
 	}
 	
 	/**
 	 Create a regular (non HD) `KeyPair` from a `Mnemonic` instance
 	 - parameter mnemonic: An instance of `Mnemonic`
-	 - parameter signingCurve: The `EllipticalCurve` to use to create the keys
 	 - Returns: A `KeyPair` instance, if able, nil otherwise
 	 */
-	public static func regular(fromMnemonic mnemonic: Mnemonic, passphrase: String/*, andSigningCurve signingCurve: EllipticalCurve = .ed25519*/) -> KeyPair? {
+	public static func regular(fromMnemonic mnemonic: Mnemonic, passphrase: String) -> KeyPair? {
 		do {
 			let seed = try mnemonic.seed(passphrase: passphrase).hexString
-			return regular(fromSeedString: seed/*, andSigningCurve: signingCurve*/)
+			return regular(fromSeedString: seed)
 			
 		} catch (let error) {
 			os_log("KeyPair Error - regular: %@", log: .default, type: .error, "\(error)")
