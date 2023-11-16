@@ -69,7 +69,7 @@ public struct KeyPair {
 			return regular(fromSeedString: seed)
 			
 		} catch (let error) {
-			os_log("KeyPair Error - regular: %@", log: .default, type: .error, "\(error)")
+			Logger().error("KeyPair Error - regular: \(error)")
 			return nil
 		}
 	}
@@ -97,7 +97,7 @@ public struct KeyPair {
 			return KeyPair(privateKey: PrivateKey(keyPair.secretKey), publicKey: PublicKey(keyPair.publicKey))
 			
 		} catch (let error) {
-			os_log("KeyPair Error - HD: %@", log: .default, type: .error, "\(error)")
+			Logger().error("KeyPair Error - regular: \(error)")
 			return nil
 		}
 	}
@@ -114,7 +114,7 @@ public struct KeyPair {
 			return hd(fromSeedString: seed, andDerivationPath: derivationPath)
 			
 		} catch (let error) {
-			os_log("KeyPair Error - HD: %@", log: .default, type: .error, "\(error)")
+			Logger().error("KeyPair Error - regular: \(error)")
 			return nil
 		}
 	}
