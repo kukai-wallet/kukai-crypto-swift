@@ -7,7 +7,7 @@ let package = Package(
     name: "KukaiCryptoSwift",
 	platforms: [
 		.iOS("15.0"),
-		.macOS("10.15"),
+		.macOS("11.0"),
 	],
     products: [
         .library(
