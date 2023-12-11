@@ -129,7 +129,7 @@ final class KeyPairTests: XCTestCase {
 		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
 		let mnemonic = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		
-		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: ""/*, andSigningCurve: .ed25519*/)
+		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "")
 		var signatureBytes = keyPair1?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		signatureBytes.append(contentsOf: signatureBytes)
 		let signature1 = signatureBytes
@@ -143,5 +143,17 @@ final class KeyPairTests: XCTestCase {
 		// Test doesn't crash with empty
 		XCTAssert(keyPair1?.publicKey.verify(message: [], signature: [], hex: "") == false)
 		
+		
+		
+		let uncompressed1 = KeyPair.secp256k1PublicKey_uncompressed(fromBytes: signatureBytes)
+		let data1 = Data(bytes: uncompressed1, count: uncompressed1.count)
+		let dataString1 = data1.hexString
+		
+		XCTAssert(dataString1.count == 0, dataString1.count.description)
+		XCTAssert(dataString1 == "", dataString1)
+		
+		
+		let pubKeySafety = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: signatureBytes)
+		XCTAssert(pubKeySafety?.bytes.count == 33, (pubKeySafety?.bytes.count ?? 0).description)
 	}
 }
