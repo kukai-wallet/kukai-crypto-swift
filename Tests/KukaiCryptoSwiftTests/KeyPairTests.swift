@@ -154,6 +154,6 @@ final class KeyPairTests: XCTestCase {
 		
 		
 		let pubKeySafety = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: signatureBytes)
-		XCTAssert(pubKeySafety?.bytes.count == 33, (pubKeySafety?.bytes.count ?? 0).description)
+		XCTAssert(pubKeySafety == nil, (pubKeySafety?.bytes.count ?? 0).description)
 	}
 }
