@@ -87,7 +87,7 @@ public struct PublicKey: Codable {
 				return Sodium.shared.sign.verify(message: message, publicKey: self.bytes, signature: signature)
 				
 			case .secp256k1:
-				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY)), signature.count == 64 else {
+				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY)), signature.count == 32 else {
 					return false
 				}
 				

@@ -99,7 +99,7 @@ public struct PrivateKey: Codable {
 				let signatureLength = 64
 				var output = [UInt8](repeating: 0, count: signatureLength)
 				
-				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)), self.bytes.count == 64 else {
+				guard let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN)), self.bytes.count == 32 else {
 					return nil
 				}
 				
