@@ -38,6 +38,27 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2, hex: signatureHex2) == true)
 	}
 	
+	func testRegularTZ2() throws {
+		let messageToSign = "something very interesting that needs to be signed".bytes
+		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
+		
+		let privetKeyBytes: [UInt8] = [125, 133, 194, 84, 250, 98, 79, 41, 174, 84, 233, 129, 41, 85, 148, 33, 44, 186, 87, 103, 235, 213, 247, 99, 133, 29, 151, 197, 91, 106, 136, 214]
+		let base58encodedKey = Base58Check.encode(message: privetKeyBytes, prefix: Prefix.Keys.Secp256k1.secret)
+		
+		if let privateKey = PrivateKey(base58encodedKey, signingCurve: .secp256k1), let pubKey = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: privateKey.bytes) {
+			let tempAddress = pubKey.publicKeyHash
+			
+			let signature = privateKey.sign(bytes: watermarkedBytes) ?? []
+			let signatureHex = signature.hexString
+			
+			XCTAssert(tempAddress == "tz2HpbGQcmU3UyusJ78Sbqeg9fYteamSMDGo", tempAddress ?? "-")
+			XCTAssert(signatureHex == "2c9f14f18a21867fd2fe3130ad3aaeca7cb1c9421d78d32537173b98b25ed07d054837a878c7e9fe2d237b42c90e5aa2a63a58774833221707cc303a2121b3e7", signatureHex)
+			
+		} else {
+			XCTFail("Failed to create private key or public key")
+		}
+	}
+	
 	func testHD() throws {
 		let messageToSign = "something very interesting that needs to be signed".bytes
 		let watermarkedBytes = messageToSign.addOperationWatermarkAndHash() ?? []
