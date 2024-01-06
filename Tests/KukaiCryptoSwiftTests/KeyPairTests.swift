@@ -24,7 +24,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair1?.publicKey.base58CheckRepresentation == "edpkuLshcvrn2x7c2QtCCMv8XFNEM2gHkPDGb3paKt2hBvnBRfepR4", keyPair1?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair1?.privateKey.base58CheckRepresentation == "edskRtSFLebJzJif7KX55PMEquDPvYybzRCug2oUfvExABrZKjEdcso2bDGnu2SM47BbWAxsTMsNWCQarrezUWzMjxUxbZLFjn", keyPair1?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex1 == "a48c9404671f257f4aa088dad8862a4a39ada8ee88f223e98f67892fc9964c3026be89dbdd57e4a6800dda78f303eba7e5ce19cf3d6934435471682961dcaf0c", signatureHex1)
-		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1, hex: signatureHex1) == true)
+		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1) == true)
 		
 		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase")
 		let signature2 = keyPair2?.privateKey.sign(bytes: watermarkedBytes) ?? []
@@ -35,7 +35,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair2?.publicKey.base58CheckRepresentation == "edpkuaUnRZQzwP1QYHFFXzbhN919wg17KHm7vHH86pxxgSSkqT7U4a", keyPair2?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair2?.privateKey.base58CheckRepresentation == "edskRcK6XU6Bhvjic9daFwgXH3DchwNNDzJCHjvCpB3PKvXdu3dPdBnf5nk1WrSt5zaZiXyrAsLqrgDvGKeP7F7GkZRZTmwo78", keyPair2?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex2 == "07d0220bd7bb5b0dff17fb1c26f9e171bc836fe4a90f72646c11a5228e0d25fb4b61b40e0145476c2be2c6220cf8f204a1b9f7d6ba2b6ea77dfa6edd17a66a08", signatureHex2)
-		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2, hex: signatureHex2) == true)
+		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2) == true)
 	}
 	
 	func testRegularTZ2() throws {
@@ -73,7 +73,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair1?.publicKey.base58CheckRepresentation == "edpkuRXPQpuQyDemXE59dyYA1Eu5T94waiiL5PjcWDSkkw86ZvxR2j", keyPair1?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair1?.privateKey.base58CheckRepresentation == "edskRt7UsfGdfmmruGVV1GY2YFHpxTDeML8ZLwSHihw6RLaXNTAEiFRaooAMCFL3BDAT5ATN5cHswXm3HKu6rsJUmF2U3n4t1z", keyPair1?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex1 == "d9f272a3ed8459e0b51575dc6660628e64acb231d813f04dc5c2417addd181ddf9da7fe128ed492520c77476d3db3572277b91faabd10b219a4abe6e4f83a900", signatureHex1)
-		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1, hex: signatureHex1) == true)
+		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1) == true)
 		
 		let keyPair2 = KeyPair.hd(fromMnemonic: mnemonic, passphrase: "", andDerivationPath: "44'/1729'/1'/0'")
 		let signature2 = keyPair2?.privateKey.sign(bytes: watermarkedBytes) ?? []
@@ -84,7 +84,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair2?.publicKey.base58CheckRepresentation == "edpkufQ3nNdMJBkgfzCgCLmk1tbfLsqK7W8AR37KiCe7tDVvmsroHh", keyPair2?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair2?.privateKey.base58CheckRepresentation == "edskS31ZXzfzGBi1jEigpPvaWwVzwWCX3PNhx8FUpwY65SZC2oVmZ4iCHqwXCC6LBiGgdknhzJ6xAzHbpwQMEH3KKVjZ4aL4kw", keyPair2?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex2 == "c1d9165f9b7670bed93abb8a800bdf725b4c63c15de08f17a1d23dd6cdb5dd993e9950efec84a77c573062d82877099e1ce4c22e82982b59412874c3cec8de0a", signatureHex2)
-		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2, hex: signatureHex2) == true)
+		XCTAssert(keyPair2?.publicKey.verify(message: watermarkedBytes, signature: signature2) == true)
 		
 		let keyPair3 = KeyPair.hd(fromMnemonic: mnemonic, passphrase: "", andDerivationPath: "44'/1729'/2147483647'/0'")
 		let signature3 = keyPair3?.privateKey.sign(bytes: watermarkedBytes) ?? []
@@ -95,7 +95,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair3?.publicKey.base58CheckRepresentation == "edpku2piMWnck5esnUbBXeJVK5VppMjxN85oEuPyynPqrmtC34FuKT", keyPair3?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair3?.privateKey.base58CheckRepresentation == "edskRmmXh3vqPYi3k2eVZRShEnA6u6QcYVM4iUqVw1ASxLyF58Chk5wd4MPwLSPsSALVDM8DsRCjpWtuMFzNqVTHUU8r5E8Cjx", keyPair3?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex3 == "cc9e7d3bff6a17c8f3a6385397fb0d4e3136742e7e78f4719e7971223b3633a23c73a98d2a143d3693f480d93776506b38a9a8ec571e289b1e75b0a4bd26b200", signatureHex3)
-		XCTAssert(keyPair3?.publicKey.verify(message: watermarkedBytes, signature: signature3, hex: signatureHex3) == true)
+		XCTAssert(keyPair3?.publicKey.verify(message: watermarkedBytes, signature: signature3) == true)
 		
 		let keyPair4 = KeyPair.hd(fromMnemonic: mnemonic, passphrase: "", andDerivationPath: "44'/1729'/1'/1'/1'")
 		let signature4 = keyPair4?.privateKey.sign(bytes: watermarkedBytes) ?? []
@@ -106,7 +106,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair4?.publicKey.base58CheckRepresentation == "edpkthBU4kJTd8rdbeUt3MafV4KHQEMoJ9M5idVtBrCVm5vBE2kY8K", keyPair4?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair4?.privateKey.base58CheckRepresentation == "edskS34iyJpTAPGiAXmAsuraxJeujUbmqssGagUf1mZGBuoeJiXtCiBqEx4k22BPHmT5nSaY2tPucSa161Lzqi2fgt8pYqkvJQ", keyPair4?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex4 == "f98074f0fc2e34b09d6ca973be900ef698718a323db5d55eb6a9633fc07659f8fcb1a22d11453ead8e36fe866de4adcbdb35be241b2828f21146f369184ced0e", signatureHex4)
-		XCTAssert(keyPair4?.publicKey.verify(message: watermarkedBytes, signature: signature4, hex: signatureHex4) == true)
+		XCTAssert(keyPair4?.publicKey.verify(message: watermarkedBytes, signature: signature4) == true)
 		
 		let keyPair5 = KeyPair.hd(fromMnemonic: mnemonic, passphrase: "superSecurePassphrase", andDerivationPath: "44'/1729'/0'/0'")
 		let signature5 = keyPair5?.privateKey.sign(bytes: watermarkedBytes) ?? []
@@ -117,7 +117,7 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(keyPair5?.publicKey.base58CheckRepresentation == "edpktos7HPEb8SYPeZAiRQ2e96zxe12PaSiMsBxZVr12Bvi8uCEyUm", keyPair5?.publicKey.base58CheckRepresentation ?? "-")
 		XCTAssert(keyPair5?.privateKey.base58CheckRepresentation == "edskS8svPN21gfV4fhRYirkN5LY28VoFDnsUMuisWDq2PCnsydAdeQuYiRAmhxquV2mqZBiadJCVzB8tYVycWbjpUkiN9XXGGy", keyPair5?.privateKey.base58CheckRepresentation ?? "-")
 		XCTAssert(signatureHex5 == "45825aeb7e4cb6515d783312e527d4932029fceae883f8a0cfde5c4b938f5412a1ae86413d7b2dff41fb243cefdd4cb08cc9665968acb185e305ac1ca6ca8d0b", signatureHex5)
-		XCTAssert(keyPair5?.publicKey.verify(message: watermarkedBytes, signature: signature5, hex: signatureHex5) == true)
+		XCTAssert(keyPair5?.publicKey.verify(message: watermarkedBytes, signature: signature5) == true)
 	}
 	
 	func testEllipticalCurve() {
@@ -159,10 +159,10 @@ final class KeyPairTests: XCTestCase {
 		
 		// Test function doesn't crash with more than 64 byte signature
 		XCTAssert(signatureBytes.count > 64)
-		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1, hex: signatureHex1) == true)
+		XCTAssert(keyPair1?.publicKey.verify(message: watermarkedBytes, signature: signature1) == true)
 		
 		// Test doesn't crash with empty
-		XCTAssert(keyPair1?.publicKey.verify(message: [], signature: [], hex: "") == false)
+		XCTAssert(keyPair1?.publicKey.verify(message: [], signature: []) == false)
 		
 		
 		

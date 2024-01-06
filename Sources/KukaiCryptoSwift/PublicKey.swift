@@ -63,25 +63,12 @@ public struct PublicKey: Codable {
 	// MARK: - Utils
 	
 	/**
-	 Verify that the given signature matches the given input hex.
-	 - parameter signature: The proposed signature of the bytes.
-	 - parameter hex: The hex to check.
-	 - Returns: True if the public key and signature match the given bytes.
-	 */
-	public func verify(message: [UInt8], signature: [UInt8], hex: String) -> Bool {
-		guard let bytes = Sodium.shared.utils.hex2bin(hex) else {
-			return false
-		}
-		return verify(message: message, signature: signature, bytes: bytes)
-	}
-	
-	/**
 	 Verify that the given signature matches the given input bytes.
 	 - parameter signature: The proposed signature of the bytes.
 	 - parameter bytes: The bytes to check.
 	 - Returns: True if the public key and signature match the given bytes.
 	 */
-	public func verify(message: [UInt8], signature: [UInt8], bytes: [UInt8]) -> Bool {
+	public func verify(message: [UInt8], signature: [UInt8]) -> Bool {
 		switch signingCurve {
 			case .ed25519:
 				return Sodium.shared.sign.verify(message: message, publicKey: self.bytes, signature: signature)
