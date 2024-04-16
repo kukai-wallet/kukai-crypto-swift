@@ -154,8 +154,6 @@ final class KeyPairTests: XCTestCase {
 		var signatureBytes = keyPair1?.privateKey.sign(bytes: watermarkedBytes) ?? []
 		signatureBytes.append(contentsOf: signatureBytes)
 		let signature1 = signatureBytes
-		let signatureHex1 = signature1.hexString + signature1.hexString
-		
 		
 		// Test function doesn't crash with more than 64 byte signature
 		XCTAssert(signatureBytes.count > 64)

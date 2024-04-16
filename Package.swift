@@ -28,6 +28,9 @@ let package = Package(
 				.product(name: "Sodium", package: "swift-sodium"),
 				.product(name: "secp256k1", package: "secp256k1.swift"),
 				"BigInt"
+			],
+			resources: [
+				.copy("PrivacyInfo.xcprivacy")
 			]
 		),
         .testTarget(
