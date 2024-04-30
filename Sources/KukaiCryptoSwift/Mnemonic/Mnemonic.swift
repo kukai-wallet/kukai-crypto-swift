@@ -30,7 +30,7 @@ public struct Mnemonic: Equatable, Codable {
 	
 	/// The list of words.
 	public var words: [String] {
-		phrase.lowercased().split(separator: " ").map(String.init)
+		phrase.split(separator: " ").map(String.init)
 	}
 	
 	/**

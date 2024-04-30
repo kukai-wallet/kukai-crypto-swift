@@ -78,5 +78,8 @@ final class MnemonicTests: XCTestCase {
 		
 		let mnemonic7 = try Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed kit")
 		XCTAssert(mnemonic7.isValid() == false)
+		
+		let mnemonic8 = try Mnemonic(seedPhrase: "Kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
+		XCTAssert(mnemonic8.isValid() == false)
 	}
 }
