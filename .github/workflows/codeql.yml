@@ -1,12 +1,10 @@
-name: Unit Test
+name: CodeQl
 on:
   push:
     branches:
-      - main
       - develop
   pull_request:
     branches:
-      - main
       - develop
 
 jobs:
@@ -23,18 +21,15 @@ jobs:
       - name: Get current date
         run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
-      - name: Test
-        run: xcodebuild test -scheme KukaiCryptoSwift -destination "platform=iOS Simulator,OS=17.2,name=iPhone 15" -enableCodeCoverage YES -resultBundlePath "~/xcode-$NOW.xcresult"
-
-      - name: Upload results
-        if: ${{ success() || failure() }}
-        uses: actions/upload-artifact@v4.3.1
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
         with:
-          name: "results-${{ env.NOW }}.xcresult"
-          path: "~/xcode-${{ env.NOW }}.xcresult"
+         languages: "swift"
 
+      - name: Test
+        run: xcodebuild -scheme KukaiCryptoSwift -destination "platform=iOS Simulator,OS=17.2,name=iPhone 15"
 
-
-
-
-  
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:swift"
