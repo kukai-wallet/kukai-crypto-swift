@@ -22,6 +22,14 @@ public enum EllipticalCurve: String, Codable {
 		else if prefix == "tz2" { return .secp256k1 }
 		else { return nil }
 	}
+	
+	public static func fromBase58Key(_ key: String) -> EllipticalCurve? {
+		let prefix = key.lowercased().prefix(4)
+		
+		if prefix == "edpk" { return .ed25519 }
+		else if prefix == "sppk" { return .secp256k1 }
+		else { return nil }
+	}
 }
 
 /// A struct representing a both a `PrivateKey` and `PublicKey` with helper methods to create various kinds

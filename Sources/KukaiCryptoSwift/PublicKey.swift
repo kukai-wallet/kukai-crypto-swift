@@ -92,6 +92,25 @@ public struct PublicKey: Codable {
 				return secp256k1_ecdsa_verify(context, &cSignature, message, &publicKey) == 1
 		}
 	}
+	
+	/**
+	 Take a base58Encoded public key (with a prefix) and convert it to a tzX public key hash
+	 */
+	public static func publicKeyHash(fromBase58EncodedKey key: String) -> String? {
+		guard let algo = EllipticalCurve.fromBase58Key(key),
+			  let decoded = Base58Check.decode(string: key, prefix: algo == .ed25519 ? Prefix.Keys.Ed25519.public : Prefix.Keys.Secp256k1.public),
+			  let hash = Sodium.shared.genericHash.hash(message: decoded, outputLength: 20) else {
+			return nil
+		}
+		
+		switch algo {
+			case .ed25519:
+				return Base58Check.encode(message: hash, prefix: Prefix.Address.tz1)
+				
+			case .secp256k1:
+				return Base58Check.encode(message: hash, prefix: Prefix.Address.tz2)
+		}
+	}
 }
 
 extension PublicKey: CustomStringConvertible {

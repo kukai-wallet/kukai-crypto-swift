@@ -175,4 +175,18 @@ final class KeyPairTests: XCTestCase {
 		let pubKeySafety = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: signatureBytes)
 		XCTAssert(pubKeySafety == nil, (pubKeySafety?.bytes.count ?? 0).description)
 	}
+	
+	func testKeyToHash() throws {
+		let hash1 = PublicKey.publicKeyHash(fromBase58EncodedKey: "edpkuLshcvrn2x7c2QtCCMv8XFNEM2gHkPDGb3paKt2hBvnBRfepR4")
+		XCTAssert(hash1 == "tz1Xx4vxaUCkgxfaUhr1EV1kvTE2Rt3BkEdm", hash1 ?? "-")
+		
+		let hash2 = PublicKey.publicKeyHash(fromBase58EncodedKey: "edpkuaUnRZQzwP1QYHFFXzbhN919wg17KHm7vHH86pxxgSSkqT7U4a")
+		XCTAssert(hash2 == "tz1ZYoRJ2iouRi5r6CT83Ptp9Bof7RMRkxXe", hash2 ?? "-")
+		
+		let hash3 = PublicKey.publicKeyHash(fromBase58EncodedKey: "edpkufQ3nNdMJBkgfzCgCLmk1tbfLsqK7W8AR37KiCe7tDVvmsroHh")
+		XCTAssert(hash3 == "tz1WCBJKr1rRivyCnN9hREpRAMqrLdmqDcym", hash3 ?? "-")
+		
+		let hash4 = PublicKey.publicKeyHash(fromBase58EncodedKey: "sppk7Zzqz2AjP4yXqr5ys99gZkaPLFKfGKnUxn3u1T1xfNSArZ5CKX6")
+		XCTAssert(hash4 == "tz2HpbGQcmU3UyusJ78Sbqeg9fYteamSMDGo", hash4 ?? "-")
+	}
 }
