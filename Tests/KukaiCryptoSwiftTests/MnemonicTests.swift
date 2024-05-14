@@ -82,4 +82,44 @@ final class MnemonicTests: XCTestCase {
 		let mnemonic8 = try Mnemonic(seedPhrase: "Kit trigger pledge excess payment sentence dutch mandate start sense seed venture")
 		XCTAssert(mnemonic8.isValid() == false)
 	}
+	
+	func testShifting() throws {
+		let privateKeyBytes: [UInt8] = [125, 133, 194, 84, 250, 98, 79, 41, 174, 84, 233, 129, 41, 85, 148, 33, 44, 186, 87, 103, 235, 213, 247, 99, 133, 29, 151, 197, 91, 106, 136, 214]
+		let privateKey = PrivateKey(privateKeyBytes, signingCurve: .secp256k1)
+		
+		let expectedShiftedWords = "laugh come news visit ceiling network rich outdoor license enjoy govern drastic slight close panic kingdom wash bring electric convince fiber relief cash siren"
+		let expectedNormalWords = "laugh come news visit ceiling network rich outdoor license enjoy govern drastic slight close panic kingdom wash bring electric convince fiber relief cash sunny"
+		let expectedTz2Address = "tz2HpbGQcmU3UyusJ78Sbqeg9fYteamSMDGo"
+		
+		
+		// Test shift
+		guard let shiftedMnemonic = Mnemonic.shiftedMnemonic(fromSpskPrivateKey: privateKey) else {
+			XCTFail("Couldn't create shifted Mnemonic")
+			return
+		}
+		
+		let joinedWords = shiftedMnemonic.words.joined(separator: " ")
+		XCTAssert(joinedWords == expectedShiftedWords, joinedWords)
+		
+		// Test unshift
+		let shiftedSpsk = Mnemonic.mnemonicToSpsk(mnemonic: shiftedMnemonic)
+		XCTAssert(shiftedSpsk == "spsk2Nqz6AW1zVwLJ3QgcXhzPNdT3mpRskUKA2UXza5kNRd3NLKrMy", shiftedSpsk ?? "-")
+		XCTAssert(Mnemonic.validSpsk(shiftedSpsk ?? ""))
+		
+		guard let normalMnemonic = Mnemonic.shiftedMnemonicToMnemonic(mnemonic: shiftedMnemonic) else {
+			XCTFail("Couldn't create normal Mnemonic")
+			return
+		}
+		
+		let normalJoinedWords = normalMnemonic.words.joined(separator: " ")
+		XCTAssert(normalJoinedWords == expectedNormalWords, normalJoinedWords)
+		
+		let normalSpsk = Mnemonic.mnemonicToSpsk(mnemonic: normalMnemonic)
+		XCTAssert(normalSpsk == "spsk2Nqz6AW1zVwLJ3QgcXhzPNdT3mpRskUKA2UXza5kNRd3NLKrMy", normalSpsk ?? "-")
+		
+		let normalSpskBytes = Base58Check.decode(string: normalSpsk ?? "", prefix: Prefix.Keys.Secp256k1.secret)
+		let normalPrivateKey = PrivateKey(normalSpskBytes ?? [], signingCurve: .secp256k1)
+		let normalPublicKey = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: normalPrivateKey.bytes)
+		XCTAssert(normalPublicKey?.publicKeyHash == expectedTz2Address, normalPublicKey?.publicKeyHash ?? "-")
+	}
 }

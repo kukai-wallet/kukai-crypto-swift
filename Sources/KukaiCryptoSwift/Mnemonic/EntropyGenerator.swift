@@ -37,6 +37,12 @@ extension Int: EntropyGenerator {
 	public static var strongest: Int { 256 }
 }
 
+extension Data: EntropyGenerator {
+	public func entropy() -> Result<Data, Error> {
+		return Result.success(self)
+	}
+}
+
 extension EntropyGenerator where Self: StringProtocol {
 	/**
 	 * Interprets `self` as a string of pre-computed _entropy_, at least if its
