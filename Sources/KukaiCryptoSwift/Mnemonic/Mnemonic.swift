@@ -165,9 +165,9 @@ public struct Mnemonic: Equatable, Codable {
 	}
 	
 	/**
-	 Check a mnemonic is of the correct length, and is made up of valid BIP39 words
+	 Check a mnemonic contains valid words and a valid length (all other checks are ignored)
 	 */
-	public func isValid(in vocabulary: WordList = .english) -> Bool {
+	public func isValidWords(in vocabulary: WordList = .english) -> Bool {
 		let words = self.words
 		
 		if words.count != 12 && words.count != 15 && words.count != 18 && words.count != 21 && words.count != 24 {
@@ -182,7 +182,14 @@ public struct Mnemonic: Equatable, Codable {
 			}
 		}
 		
-		return Mnemonic.isValidChecksum(phrase: words, wordlist: vocabulary)
+		return true
+	}
+	
+	/**
+	 Check a mnemonic is of the correct length, is made up of valid BIP39 words, and the checksum matches
+	 */
+	public func isValid(in vocabulary: WordList = .english) -> Bool {
+		return isValidWords() && Mnemonic.isValidChecksum(phrase: words, wordlist: vocabulary)
 	}
 	
 	/**
