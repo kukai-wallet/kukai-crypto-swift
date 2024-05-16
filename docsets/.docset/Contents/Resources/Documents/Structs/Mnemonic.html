@@ -485,6 +485,33 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV12isValidWords2inSbAA8WordListO_tF"></a>
+                    <a name="//apple_ref/swift/Method/isValidWords(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV12isValidWords2inSbAA8WordListO_tF">isValidWords(in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check a mnemonic contains valid words and a valid length (all other checks are ignored)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isValidWords</span><span class="p">(</span><span class="k">in</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:16KukaiCryptoSwift8MnemonicV7isValid2inSbAA8WordListO_tF"></a>
                     <a name="//apple_ref/swift/Method/isValid(in:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV7isValid2inSbAA8WordListO_tF">isValid(in:<wbr>)</a>
@@ -495,7 +522,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Check a mnemonic is of the correct length, and is made up of valid BIP39 words</p>
+                        <p>Check a mnemonic is of the correct length, is made up of valid BIP39 words, and the checksum matches</p>
 
                       </div>
                       <div class="declaration">
@@ -509,12 +536,202 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV9toEntropy14ignoreChecksum8wordlistSays5UInt8VGSb_AA8WordListOtKF"></a>
+                    <a name="//apple_ref/swift/Method/toEntropy(ignoreChecksum:wordlist:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV9toEntropy14ignoreChecksum8wordlistSays5UInt8VGSb_AA8WordListOtKF">toEntropy(ignoreChecksum:<wbr>wordlist:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Modifed from: <a href="https://github.com/pengpengliu/BIP39/blob/master/Sources/BIP39/Mnemonic.swift">https://github.com/pengpengliu/BIP39/blob/master/Sources/BIP39/Mnemonic.swift</a>
+Convert the current Mnemonic back into entropy</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toEntropy</span><span class="p">(</span><span class="nv">ignoreChecksum</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">wordlist</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span><span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV07shiftedD018fromSpskPrivateKeyACSgAA0hI0V_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/shiftedMnemonic(fromSpskPrivateKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV07shiftedD018fromSpskPrivateKeyACSgAA0hI0V_tFZ">shiftedMnemonic(fromSpskPrivateKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Take a <code><a href="../Structs/PrivateKey.html">PrivateKey</a></code> from a TorusWallet and generate a custom &ldquo;shifted checksum&rdquo; mnemonic, so that we can recover wallets that previously had no seed words</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">shiftedMnemonic</span><span class="p">(</span><span class="n">fromSpskPrivateKey</span> <span class="nv">pk</span><span class="p">:</span> <span class="kt"><a href="../Structs/PrivateKey.html">PrivateKey</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Mnemonic</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV13shiftChecksum8mnemonic8wordListA2C_AA04WordI0OtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/shiftChecksum(mnemonic:wordList:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV13shiftChecksum8mnemonic8wordListA2C_AA04WordI0OtKFZ">shiftChecksum(mnemonic:<wbr>wordList:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Shift the checksum of of a <code>Mnemonic</code> so that it won&rsquo;t be accepted by tradtional improts</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">shiftChecksum</span><span class="p">(</span><span class="nv">mnemonic</span><span class="p">:</span> <span class="kt">Mnemonic</span><span class="p">,</span> <span class="nv">wordList</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span><span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Mnemonic</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV14getShiftedWord4word0H4ListS2S_AA0gI0OtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/getShiftedWord(word:wordList:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV14getShiftedWord4word0H4ListS2S_AA0gI0OtKFZ">getShiftedWord(word:<wbr>wordList:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return a shifted word to replace the last word in a mnemonic</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getShiftedWord</span><span class="p">(</span><span class="nv">word</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">wordList</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span><span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV14mnemonicToSpsk0E08wordListSSSgAC_AA04WordI0OtFZ"></a>
+                    <a name="//apple_ref/swift/Method/mnemonicToSpsk(mnemonic:wordList:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV14mnemonicToSpsk0E08wordListSSSgAC_AA04WordI0OtFZ">mnemonicToSpsk(mnemonic:<wbr>wordList:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert a mnemonic to a Base58 encoded private key string. Helpful when determining if a shifted mnemonic is valid</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">mnemonicToSpsk</span><span class="p">(</span><span class="nv">mnemonic</span><span class="p">:</span> <span class="kt">Mnemonic</span><span class="p">,</span> <span class="nv">wordList</span><span class="p">:</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/WordList.html">WordList</a></span><span class="o">.</span><span class="n">english</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV07shiftedd2ToD08mnemonicACSgAC_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/shiftedMnemonicToMnemonic(mnemonic:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV07shiftedd2ToD08mnemonicACSgAC_tFZ">shiftedMnemonicToMnemonic(mnemonic:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert a shifted Mnemoinc back to normal</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">shiftedMnemonicToMnemonic</span><span class="p">(</span><span class="nv">mnemonic</span><span class="p">:</span> <span class="kt">Mnemonic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Mnemonic</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift8MnemonicV9validSpskySbSSFZ"></a>
+                    <a name="//apple_ref/swift/Method/validSpsk(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift8MnemonicV9validSpskySbSSFZ">validSpsk(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check if a supplied Spsk string is valid</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">validSpsk</span><span class="p">(</span><span class="n">_</span> <span class="nv">sk</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2024-05-08)</p>
+          <p>&copy; 2024 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2024-05-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
