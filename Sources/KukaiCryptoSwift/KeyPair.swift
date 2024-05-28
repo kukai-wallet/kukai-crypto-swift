@@ -92,9 +92,12 @@ public struct KeyPair {
 		
 		switch first4 {
 			case "edsk":
-				let is54Chars = (secretKey.count == 54)
-				let prefix = is54Chars ? Prefix.Keys.Ed25519.seed : Prefix.Keys.Ed25519.secret
-				guard let decoded = Base58Check.decode(string: secretKey, prefix: prefix), let keyPair = Sodium.shared.sign.keyPair(seed: Array(decoded.prefix(32))) else {
+				var decoded = Base58Check.decode(string: secretKey, prefix: Prefix.Keys.Ed25519.secret)
+				if decoded == nil {
+					decoded = Base58Check.decode(string: secretKey, prefix: Prefix.Keys.Ed25519.seed)
+				}
+				
+				guard let decoded = decoded, let keyPair = Sodium.shared.sign.keyPair(seed: Array(decoded.prefix(32))) else {
 					return nil
 				}
 				
