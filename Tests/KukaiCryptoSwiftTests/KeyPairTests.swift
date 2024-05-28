@@ -189,4 +189,41 @@ final class KeyPairTests: XCTestCase {
 		let hash4 = PublicKey.publicKeyHash(fromBase58EncodedKey: "sppk7Zzqz2AjP4yXqr5ys99gZkaPLFKfGKnUxn3u1T1xfNSArZ5CKX6")
 		XCTAssert(hash4 == "tz2HpbGQcmU3UyusJ78Sbqeg9fYteamSMDGo", hash4 ?? "-")
 	}
+	
+	func testKeyPairDecryption() {
+		let tz1Encrypted = "edesk1L8uVSYd3aug7jbeynzErQTnBxq6G6hJwmeue3yUBt11wp3ULXvcLwYRzDp4LWWvRFNJXRi3LaN7WGiEGhh"
+		let tz2Encrypted = "spesk1S5bMTCyH9z4mHSpnbn6DBY831DD6Rxgq7ANfEKkngoHSwy6B5odh942TKL6DtLbfTkpTHfSTAQu2d72Qd6"
+		let encryptedPassword = "pa55word"
+		
+		let tz1KeyPair = KeyPair.decryptSecretKey(tz1Encrypted, ellipticalCurve: .ed25519, passphrase: encryptedPassword)
+		XCTAssert(tz1KeyPair?.publicKey.publicKeyHash == "tz1XztestvvcXSQZUbZav5YgVLRQbxC4GuMF", tz1KeyPair?.publicKey.publicKeyHash ?? "-")
+		
+		let tz2KeyPair = KeyPair.decryptSecretKey(tz2Encrypted, ellipticalCurve: .secp256k1, passphrase: encryptedPassword)
+		XCTAssert(tz2KeyPair?.publicKey.publicKeyHash == "tz2C8APAjnQfffdkHssxdFRctkD1iPLGaGEg", tz2KeyPair?.publicKey.publicKeyHash ?? "-")
+	}
+	
+	func testImportingWalletFromPrivateKey() {
+		let tz1UnencryptedSeed = KeyPair.regular(fromSecretKey: "edsk3KvXD8SVD9GCyU4jbzaFba2HZRad5pQ7ajL79n7rUoc3nfHv5t", andPassphrase: nil)
+		XCTAssert(tz1UnencryptedSeed?.publicKey.publicKeyHash == "tz1Qvpsq7UZWyQ4yabf9wGpG97testZCjoCH", tz1UnencryptedSeed?.publicKey.publicKeyHash ?? "-")
+		
+		let tz1UnencryptedPk = KeyPair.regular(fromSecretKey: "edskRgQqEw17KMib89AzChu8DiJjmVeDfGmbCMpp7MpmhgTdNVvZ3TTaLfwNoux4hDDVeLxmEJxKiYE1cYp1Vgj6QATKaJa58L", andPassphrase: nil)
+		XCTAssert(tz1UnencryptedPk?.publicKey.publicKeyHash == "tz1Ue76bLW7boAcJEZf2kSGcamdBKVi4Kpss", tz1UnencryptedPk?.publicKey.publicKeyHash ?? "-")
+		
+		let tz1Encrypted = KeyPair.regular(fromSecretKey: "edesk1L8uVSYd3aug7jbeynzErQTnBxq6G6hJwmeue3yUBt11wp3ULXvcLwYRzDp4LWWvRFNJXRi3LaN7WGiEGhh", andPassphrase: "pa55word")
+		XCTAssert(tz1Encrypted?.publicKey.publicKeyHash == "tz1XztestvvcXSQZUbZav5YgVLRQbxC4GuMF", tz1Encrypted?.publicKey.publicKeyHash ?? "-")
+		
+		let tz2Unencrypted = KeyPair.regular(fromSecretKey: "spsk29hF9oJ6koNnnJMs1rXz4ynBs8hL8FyubTNPCu2tCVP5beGDbw", andPassphrase: nil)
+		XCTAssert(tz2Unencrypted?.publicKey.publicKeyHash == "tz2RbUirt95UQHa9YyxcLj9GusNctxwn3Xi1", tz2Unencrypted?.publicKey.publicKeyHash ?? "-")
+		
+		let tz2Encrypted = KeyPair.regular(fromSecretKey: "spesk1S5bMTCyH9z4mHSpnbn6DBY831DD6Rxgq7ANfEKkngoHSwy6B5odh942TKL6DtLbfTkpTHfSTAQu2d72Qd6", andPassphrase: "pa55word")
+		XCTAssert(tz2Encrypted?.publicKey.publicKeyHash == "tz2C8APAjnQfffdkHssxdFRctkD1iPLGaGEg", tz2Encrypted?.publicKey.publicKeyHash ?? "-")
+	}
+	
+	func testIsEncrypted() {
+		XCTAssert(KeyPair.isSecretKeyEncrypted("edsk3KvXD8SVD9GCyU4jbzaFba2HZRad5pQ7ajL79n7rUoc3nfHv5t") == false)
+		XCTAssert(KeyPair.isSecretKeyEncrypted("edskRgQqEw17KMib89AzChu8DiJjmVeDfGmbCMpp7MpmhgTdNVvZ3TTaLfwNoux4hDDVeLxmEJxKiYE1cYp1Vgj6QATKaJa58L") == false)
+		XCTAssert(KeyPair.isSecretKeyEncrypted("edesk1L8uVSYd3aug7jbeynzErQTnBxq6G6hJwmeue3yUBt11wp3ULXvcLwYRzDp4LWWvRFNJXRi3LaN7WGiEGhh") == true)
+		XCTAssert(KeyPair.isSecretKeyEncrypted("spsk29hF9oJ6koNnnJMs1rXz4ynBs8hL8FyubTNPCu2tCVP5beGDbw") == false)
+		XCTAssert(KeyPair.isSecretKeyEncrypted("spesk1S5bMTCyH9z4mHSpnbn6DBY831DD6Rxgq7ANfEKkngoHSwy6B5odh942TKL6DtLbfTkpTHfSTAQu2d72Qd6") == true)
+	}
 }

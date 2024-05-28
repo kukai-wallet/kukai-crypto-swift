@@ -8,6 +8,7 @@
 import Foundation
 import Sodium
 import secp256k1
+import CommonCrypto
 import os.log
 
 /// Distingush between ed25519 (TZ1...) and secp256k1 (TZ2...) curves for creating and using wallet addresses
@@ -79,6 +80,54 @@ public struct KeyPair {
 		} catch (let error) {
 			Logger().error("KeyPair Error - regular: \(error)")
 			return nil
+		}
+	}
+	
+	/**
+	 Create a `KeyPair` from a Base58 Check encoded secret key, optionaly encrypted with a passphrase.
+	 Supports both Tz1 (edsk...   edes...) and Tz2 (spsk...   spes...)
+	 */
+	public static func regular(fromSecretKey secretKey: String, andPassphrase: String?) -> KeyPair? {
+		let first4 = secretKey.prefix(4)
+		
+		switch first4 {
+			case "edsk":
+				let is54Chars = (secretKey.count == 54)
+				let prefix = is54Chars ? Prefix.Keys.Ed25519.seed : Prefix.Keys.Ed25519.secret
+				guard let decoded = Base58Check.decode(string: secretKey, prefix: prefix), let keyPair = Sodium.shared.sign.keyPair(seed: Array(decoded.prefix(32))) else {
+					return nil
+				}
+				
+				return KeyPair(privateKey: PrivateKey(keyPair.secretKey), publicKey: PublicKey(keyPair.publicKey))
+				
+			case "edes":
+				guard let password = andPassphrase else {
+					return nil
+				}
+				
+				return KeyPair.decryptSecretKey(secretKey, ellipticalCurve: .ed25519, passphrase: password)
+				
+			case "spsk":
+				guard let decoded = Base58Check.decode(string: secretKey, prefix: Prefix.Keys.Secp256k1.secret) else {
+					return nil
+				}
+				
+				let privateKey = PrivateKey(decoded, signingCurve: .secp256k1)
+				guard let publicKey = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: privateKey.bytes) else {
+					return nil
+				}
+				
+				return KeyPair(privateKey: privateKey, publicKey: publicKey)
+				
+			case "spes":
+				guard let password = andPassphrase else {
+					return nil
+				}
+				
+				return KeyPair.decryptSecretKey(secretKey, ellipticalCurve: .secp256k1, passphrase: password)
+				
+			default:
+				return nil
 		}
 	}
 	
@@ -182,5 +231,79 @@ public struct KeyPair {
 		}
 		
 		return outputBytes
+	}
+	
+	public static func decryptSecretKey(_ secretKey: String, ellipticalCurve: EllipticalCurve, passphrase: String) -> KeyPair? {
+		var decoded: [UInt8]? = nil
+		
+		switch ellipticalCurve {
+			case .ed25519:
+				decoded = Base58Check.decode(string: secretKey, prefix: Prefix.Keys.Ed25519.encrypted)
+				
+			case .secp256k1:
+				decoded = Base58Check.decode(string: secretKey, prefix: Prefix.Keys.Secp256k1.encrypted)
+		}
+		
+		guard let minusPrefix = decoded else {
+			return nil
+		}
+		
+		let salt = Array(minusPrefix.prefix(8))
+		let encryptedSk = Array(minusPrefix.suffix(from: 8))
+		guard let key = pbkdf2(password: passphrase, saltData: salt.data(), keyByteCount: 32, prf: CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA512), rounds: 32768),
+			  let box = Sodium.shared.secretBox.open(authenticatedCipherText: encryptedSk, secretKey: key.bytes(), nonce: Array(repeating: 0, count: 24)) else {
+			return nil
+		}
+		
+		
+		var keyPair: KeyPair? = nil
+		switch ellipticalCurve {
+			case .ed25519:
+				guard let res = Sodium.shared.sign.keyPair(seed: box) else {
+					return nil
+				}
+				
+				keyPair = KeyPair(privateKey: PrivateKey(res.secretKey), publicKey: PublicKey(res.publicKey))
+				
+			case .secp256k1:
+				let privateKey = PrivateKey(box, signingCurve: .secp256k1)
+				guard let publicKey = KeyPair.secp256k1PublicKey(fromPrivateKeyBytes: privateKey.bytes) else {
+					return nil
+				}
+				
+				keyPair = KeyPair(privateKey: privateKey, publicKey: publicKey)
+		}
+		
+		return keyPair
+	}
+	
+	public static func pbkdf2(password: String, saltData: Data, keyByteCount: Int, prf: CCPseudoRandomAlgorithm, rounds: Int) -> Data? {
+		guard let passwordData = password.data(using: .utf8) else { return nil }
+		var derivedKeyData = Data(repeating: 0, count: keyByteCount)
+		let derivedCount = derivedKeyData.count
+		let derivationStatus: Int32 = derivedKeyData.withUnsafeMutableBytes { derivedKeyBytes in
+			let keyBuffer: UnsafeMutablePointer<UInt8> =
+			derivedKeyBytes.baseAddress!.assumingMemoryBound(to: UInt8.self)
+			return saltData.withUnsafeBytes { saltBytes -> Int32 in
+				let saltBuffer: UnsafePointer<UInt8> = saltBytes.baseAddress!.assumingMemoryBound(to: UInt8.self)
+				return CCKeyDerivationPBKDF(
+					CCPBKDFAlgorithm(kCCPBKDF2),
+					password,
+					passwordData.count,
+					saltBuffer,
+					saltData.count,
+					prf,
+					UInt32(rounds),
+					keyBuffer,
+					derivedCount)
+			}
+		}
+		return derivationStatus == kCCSuccess ? derivedKeyData : nil
+	}
+	
+	public static func isSecretKeyEncrypted(_ secret: String) -> Bool {
+		let prefix = secret.prefix(4)
+		
+		return prefix == "edes" || prefix == "spes"
 	}
 }

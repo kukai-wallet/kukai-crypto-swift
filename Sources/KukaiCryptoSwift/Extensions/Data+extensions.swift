@@ -69,6 +69,17 @@ public extension Data {
 			try self.append(htoi(char1) << 4 + htoi(char2))
 		}
 	}
+	
+	func bytes() -> [UInt8] {
+		return [UInt8](self)
+	}
+}
+
+public extension [UInt8] {
+	
+	func data() -> Data {
+		return Data(self)
+	}
 }
 
 public extension DataProtocol {
