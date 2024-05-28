@@ -108,6 +108,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/String.html#/s:Sl11SubSequenceQa">– SubSequence</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/%5BUInt8%5D.html">[UInt8]</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -342,6 +345,34 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:16KukaiCryptoSwift7KeyPairV7regular010fromSecretD013andPassphraseACSgSS_SSSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/regular(fromSecretKey:andPassphrase:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift7KeyPairV7regular010fromSecretD013andPassphraseACSgSS_SSSgtFZ">regular(fromSecretKey:<wbr>andPassphrase:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a <code>KeyPair</code> from a Base58 Check encoded secret key, optionaly encrypted with a passphrase.
+Supports both Tz1 (edsk&hellip;   edes&hellip;) and Tz2 (spsk&hellip;   spes&hellip;)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">regular</span><span class="p">(</span><span class="n">fromSecretKey</span> <span class="nv">secretKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">andPassphrase</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">KeyPair</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:16KukaiCryptoSwift7KeyPairV2hd14fromSeedString17andDerivationPathACSgSS_SStFZ"></a>
                     <a name="//apple_ref/swift/Method/hd(fromSeedString:andDerivationPath:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:16KukaiCryptoSwift7KeyPairV2hd14fromSeedString17andDerivationPathACSgSS_SStFZ">hd(fromSeedString:<wbr>andDerivationPath:<wbr>)</a>
@@ -530,12 +561,90 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift7KeyPairV013decryptSecretD0_15ellipticalCurve10passphraseACSgSS_AA010EllipticalI0OSStFZ"></a>
+                    <a name="//apple_ref/swift/Method/decryptSecretKey(_:ellipticalCurve:passphrase:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift7KeyPairV013decryptSecretD0_15ellipticalCurve10passphraseACSgSS_AA010EllipticalI0OSStFZ">decryptSecretKey(_:<wbr>ellipticalCurve:<wbr>passphrase:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">decryptSecretKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">secretKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ellipticalCurve</span><span class="p">:</span> <span class="kt"><a href="../Enums/EllipticalCurve.html">EllipticalCurve</a></span><span class="p">,</span> <span class="nv">passphrase</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">KeyPair</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift7KeyPairV6pbkdf28password8saltData12keyByteCount3prf6rounds10Foundation0I0VSgSS_ALSis6UInt32VSitFZ"></a>
+                    <a name="//apple_ref/swift/Method/pbkdf2(password:saltData:keyByteCount:prf:rounds:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift7KeyPairV6pbkdf28password8saltData12keyByteCount3prf6rounds10Foundation0I0VSgSS_ALSis6UInt32VSitFZ">pbkdf2(password:<wbr>saltData:<wbr>keyByteCount:<wbr>prf:<wbr>rounds:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">pbkdf2</span><span class="p">(</span><span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">saltData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">keyByteCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">prf</span><span class="p">:</span> <span class="kt">CCPseudoRandomAlgorithm</span><span class="p">,</span> <span class="nv">rounds</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16KukaiCryptoSwift7KeyPairV08isSecretD9EncryptedySbSSFZ"></a>
+                    <a name="//apple_ref/swift/Method/isSecretKeyEncrypted(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16KukaiCryptoSwift7KeyPairV08isSecretD9EncryptedySbSSFZ">isSecretKeyEncrypted(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">isSecretKeyEncrypted</span><span class="p">(</span><span class="n">_</span> <span class="nv">secret</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2024-05-16)</p>
+          <p>&copy; 2024 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2024-05-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
