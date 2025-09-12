@@ -92,16 +92,15 @@ public struct Mnemonic: Equatable, Codable {
 	 * - returns: A _result_ with the seed's bytes, or an `Error`.
 	 */
 	public func seed(passphrase: String = "") throws -> Data {
-		guard var passwordData = self.phrase.data(using: .utf8)?.map(Int8.init) else {
+		guard var passwordData = self.phrase.decomposedStringWithCompatibilityMapping.data(using: .utf8)?.map(Int8.init) else {
 			throw MnemonicError.seedPhraseInvalid("Can't convert to data")
 		}
 		
-		let salt = ("mnemonic" + passphrase)
+		let salt = ("mnemonic" + passphrase.decomposedStringWithCompatibilityMapping)
 		let passwordCount = self.phrase.count
 		
 		var saltData = salt.bytes
-		let saltCount = salt.count
-		
+		let saltCount = saltData.count
 		var data = [UInt8](repeating: 0, count: 64)
 		
 		let status = CCKeyDerivationPBKDF( CCPBKDFAlgorithm(kCCPBKDF2),

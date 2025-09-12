@@ -231,4 +231,20 @@ final class KeyPairTests: XCTestCase {
 		XCTAssert(KeyPair.isSecretKeyEncrypted("spsk29hF9oJ6koNnnJMs1rXz4ynBs8hL8FyubTNPCu2tCVP5beGDbw") == false)
 		XCTAssert(KeyPair.isSecretKeyEncrypted("spesk1S5bMTCyH9z4mHSpnbn6DBY831DD6Rxgq7ANfEKkngoHSwy6B5odh942TKL6DtLbfTkpTHfSTAQu2d72Qd6") == true)
 	}
+	
+	func testUnicodeCompatibility() {
+		guard let mnemonic = try? Mnemonic(seedPhrase: "kit trigger pledge excess payment sentence dutch mandate start sense seed venture") else {
+			XCTFail("invlaid mnemonic")
+			return
+		}
+		
+		let passphrase = "mail@email.compa55word"
+		let passphraseWithSpecialChar = "mail@email.compa55wordé"
+		
+		let keyPair1 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: passphrase)
+		let keyPair2 = KeyPair.regular(fromMnemonic: mnemonic, passphrase: passphraseWithSpecialChar)
+		
+		XCTAssert(keyPair1?.publicKey.publicKeyHash == "tz1LBTLMmLMkhaG4Gw3juPaQTTgp95CbLfaf", keyPair1?.publicKey.publicKeyHash ?? "-")
+		XCTAssert(keyPair2?.publicKey.publicKeyHash == "tz1WF2KjXMu1mFewnqH91bXUNjcYKyGRURee", keyPair2?.publicKey.publicKeyHash ?? "-")
+	}
 }
